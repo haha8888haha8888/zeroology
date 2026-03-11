@@ -75018,6 +75018,5605 @@ If new here: These frameworks are unique to Stacey Szmy's Zer00logy ecosystem.
 Press Enter to return to menu...
 
 
+*{newFileChapterAddIndex}* 
+# KNCF_Suite0035.py
+# KNCF_Suite.py
+# Kakeya Nirvana Conjecture Framework — Python Suite 
+# Modular Sector Architecture + Menu System
+# Author: Stacey Szmy × Microsoft Copilot x OpenAI ChatGPT x Grok Xai x Gemini Ai
+# Date: March 2026
+# Zer00logy License v1.19310
+
+
+import numpy as np
+import math
+import sys
+import random
+
+# ============================================================
+#  SECTOR 0 — BANNERS & UTILITIES
+# ============================================================
+
+def banner():
+    print("\n" + "="*72)
+    print("        K A K E Y A   N I R V A N A   C O N J E C T U R E   F R A M E W O R K")
+    print("                         Python Suite — Version 0001")
+    print("="*72)
+    print("  A Computational Observatory for Exotic Kakeya Geometries")
+    print("  Straight Tubes | Polygonal Tubes | Curved Tubes | Branching Tubes")
+    print("  RN Weights | BTLIAD Evolution | SBHFF Stability | RHF Diagnostics")
+    print("="*72 + "\n")
+
+def pause():
+    input("\nPress ENTER to return to the main menu...")
+
+# ============================================================
+# GLOBAL SESSION LOGGING (for Sector 22)
+# ============================================================
+
+SESSION_LOG = []
+
+import builtins
+_original_print = builtins.print
+
+def logged_print(*args, sep=' ', end='\n', file=None, flush=False):
+    text = sep.join(str(a) for a in args)
+    SESSION_LOG.append(text.rstrip())
+    _original_print(*args, sep=sep, end=end, file=file, flush=flush)
+
+builtins.print = logged_print
+
+
+# ============================================================
+#  SECTOR 1 — CORE EQUATIONS (MASTER EQUATION SET)
+# ============================================================
+
+def sector_1_master_equations():
+    print("\n" + "="*60)
+    print(" SECTOR 1 — KNCF MASTER EQUATION SET (v1.0)")
+    print("="*60)
+
+    print("""
+Equation 1 — Straight Tube:
+    T_ε(v) = { x : dist(x, ℓ_v) ≤ ε }
+
+Equation 2 — Polygonal Tube:
+    T_{ε,C}(v) = { x : ||x - ℓ_v||_C ≤ ε }
+
+Equation 3 — Curved Tube:
+    T_ε(γ) = { x : dist(x, γ(s)) ≤ ε }
+
+Equation 4 — Branching Rule:
+    γ → {γ₁, γ₂, …, γ_b}
+
+Equation 5 — Density Field:
+    K_ε(x) = Σ χ_{T_i}(x)
+
+Equation 6 — Kakeya Set:
+    K_ε = ⋃ T_i
+
+Equation 7 — Overlap Energy:
+    E_ε = Σ K_ε(x)²
+
+Equation 8 — Probability Density:
+    p(x) = K_ε(x) / Σ K_ε(x)
+
+Equation 9 — Entropy:
+    H_ε = - Σ p(x) log p(x)
+
+Equation 10 — Dimension Proxy:
+    D ≈ H_ε / log(1/ε)
+
+Equation 11 — RN Weight:
+    RN_n = n × (10/9)
+
+Equation 12 — Directional Density:
+    ρ(v_i) = RN_i / Σ RN_j
+
+Equation 13 — BTLIAD Parameters:
+    P(n)=n^2.111, F(n)=1.111n, M(n)=3.333n, B(n)=0.111n, E(n)=9.999n
+
+Equation 14 — BTLIAD Evolution:
+    V(n) = P(n)[F(n-1)M(n-1) + B(n-2)E(n-2)]
+
+Equation 15 — SBHFF Stability:
+    F_{n+1} = F_n + π sin(GF_n) - (αF_n²)/π
+""")
+
+    pause()
+
+# ============================================================
+#  SECTOR 2 — STRAIGHT TUBE SIMULATION (BASELINE)
+# ============================================================
+
+def sector_2_straight_tubes():
+    print("\n" + "="*60)
+    print(" SECTOR 2 — Straight Tube Simulation (Baseline)")
+    print("="*60)
+
+    # Parameters
+    N = 50
+    epsilon = 0.1
+    grid = np.random.uniform(-1, 1, (2000, 3))
+
+    # Random directions
+    directions = np.random.normal(size=(N, 3))
+    directions /= np.linalg.norm(directions, axis=1).reshape(-1, 1)
+
+    # Density field
+    K = np.zeros(len(grid))
+
+    for v in directions:
+        # Parametric line ℓ_v(t)
+        line = np.array([t * v for t in np.linspace(0, 1, 50)])
+        dists = np.min(np.linalg.norm(grid[:, None, :] - line[None, :, :], axis=2), axis=1)
+        K += (dists <= epsilon).astype(float)
+
+    # Metrics
+    E = np.sum(K**2)
+    p = K / np.sum(K)
+    p = p[p > 0]
+    H = -np.sum(p * np.log(p))
+    D = H / np.log(1/epsilon)
+
+    print(f"Overlap Energy E = {E:.4f}")
+    print(f"Entropy H = {H:.4f}")
+    print(f"Dimension Proxy D ≈ {D:.4f}")
+
+    pause()
+
+# ============================================================
+#  SECTOR 3 — RN WEIGHTING DEMO
+# ============================================================
+
+def rn(n):
+    return n * (10/9)
+
+def sector_3_rn_demo():
+    print("\n" + "="*60)
+    print(" SECTOR 3 — RN Directional Weighting Demo")
+    print("="*60)
+
+    values = [rn(i) for i in range(1, 11)]
+    total = sum(values)
+    rho = [v/total for v in values]
+
+    print("RN Weights (1–10):")
+    for i, r in enumerate(values, 1):
+        print(f"  RN_{i} = {r:.6f}")
+
+    print("\nDirectional Density ρ(v):")
+    for i, r in enumerate(rho, 1):
+        print(f"  ρ_{i} = {r:.6f}")
+
+    pause()
+
+# ============================================================
+#  SECTOR 4 — BTLIAD EVOLUTION DEMO
+# ============================================================
+
+def btliad_step(n, F_prev, M_prev, B_prev, E_prev):
+    P = n ** 2.111
+    F = 1.111 * n
+    M = 3.333 * n
+    B = 0.111 * n
+    E = 9.999 * n
+    V = P * (F_prev * M_prev + B_prev * E_prev)
+    return V, F, M, B, E
+
+def sector_4_btliad_demo():
+    print("\n" + "="*60)
+    print(" SECTOR 4 — BTLIAD Evolution Demo")
+    print("="*60)
+
+    F = M = B = E = 1
+    for n in range(2, 6):
+        V, F, M, B, E = btliad_step(n, F, M, B, E)
+        print(f"n={n} → V={V:.4e}")
+
+    pause()
+
+# ============================================================
+#  SECTOR 5 — SBHFF STABILITY DEMO
+# ============================================================
+
+def sbhff_step(F, G=1.0, alpha=0.1):
+    return F + math.pi * math.sin(G * F) - (alpha * F**2) / math.pi
+
+def sector_5_sbhff_demo():
+    print("\n" + "="*60)
+    print(" SECTOR 5 — SBHFF Stability Demo")
+    print("="*60)
+
+    F = 0.5
+    for i in range(10):
+        F = sbhff_step(F)
+        print(f"Step {i}: F = {F:.6f}")
+
+    pause()
+
+
+#<- copilot
+#-> chatgpt
+
+# ============================================================
+#  SECTOR 6 — POLYGONAL TUBE SIMULATION
+# ============================================================
+
+def polygon_norm_dist(points, line_points):
+    """
+    Approximate triangle Minkowski norm distance.
+    """
+    # Triangle facets
+    A = np.array([
+        [1,0,0],
+        [0,1,0],
+        [0,0,1]
+    ])
+
+    dists = []
+
+    for lp in line_points:
+        diff = points - lp
+        facet = np.max(np.abs(diff @ A.T), axis=1)
+        dists.append(facet)
+
+    return np.min(np.vstack(dists), axis=0)
+
+
+def sector_6_polygonal_tubes():
+
+    print("\n" + "="*60)
+    print(" SECTOR 6 — Polygonal Tube Simulation")
+    print("="*60)
+
+    N = 50
+    epsilon = 0.1
+
+    grid = np.random.uniform(-1,1,(2000,3))
+
+    directions = np.random.normal(size=(N,3))
+    directions /= np.linalg.norm(directions,axis=1).reshape(-1,1)
+
+    K = np.zeros(len(grid))
+
+    for v in directions:
+
+        line = np.array([t*v for t in np.linspace(0,1,50)])
+
+        dists = polygon_norm_dist(grid, line)
+
+        K += (dists <= epsilon).astype(float)
+
+    E = np.sum(K**2)
+
+    p = K/np.sum(K)
+    p = p[p>0]
+
+    H = -np.sum(p*np.log(p))
+
+    D = H/np.log(1/epsilon)
+
+    print(f"Overlap Energy E = {E:.4f}")
+    print(f"Entropy H = {H:.4f}")
+    print(f"Dimension Proxy D ≈ {D:.4f}")
+
+    pause()
+
+# ============================================================
+#  SECTOR 7 — CURVED TUBE SIMULATION
+# ============================================================
+
+def random_curve(v, length=1.0, curvature=0.5, steps=50):
+    """
+    Generates a slightly curved centerline starting in direction v.
+    """
+    pts = []
+    pos = np.zeros(3)
+
+    direction = v.copy()
+
+    for i in range(steps):
+
+        # small random curvature perturbation
+        perturb = np.random.normal(scale=curvature, size=3)
+        direction = direction + perturb
+        direction = direction / np.linalg.norm(direction)
+
+        pos = pos + direction * (length / steps)
+
+        pts.append(pos.copy())
+
+    return np.array(pts)
+
+
+def sector_7_curved_tubes():
+
+    print("\n" + "="*60)
+    print(" SECTOR 7 — Curved Tube Simulation")
+    print("="*60)
+
+    N = 50
+    epsilon = 0.1
+
+    grid = np.random.uniform(-1,1,(2000,3))
+
+    directions = np.random.normal(size=(N,3))
+    directions /= np.linalg.norm(directions,axis=1).reshape(-1,1)
+
+    K = np.zeros(len(grid))
+
+    for v in directions:
+
+        curve = random_curve(v)
+
+        dists = np.min(
+            np.linalg.norm(grid[:,None,:] - curve[None,:,:],axis=2),
+            axis=1
+        )
+
+        K += (dists <= epsilon).astype(float)
+
+    E = np.sum(K**2)
+
+    p = K/np.sum(K)
+    p = p[p>0]
+
+    H = -np.sum(p*np.log(p))
+
+    D = H/np.log(1/epsilon)
+
+    print(f"Overlap Energy E = {E:.4f}")
+    print(f"Entropy H = {H:.4f}")
+    print(f"Dimension Proxy D ≈ {D:.4f}")
+
+    pause()
+
+# ============================================================
+#  SECTOR 8 — BRANCHING TUBE SIMULATION
+# ============================================================
+
+def generate_branch(v, depth=2, steps=30):
+
+    curves = []
+
+    def branch(pos, direction, level):
+
+        pts = []
+        p = pos.copy()
+        d = direction.copy()
+
+        for i in range(steps):
+
+            p = p + d * (1.0/steps)
+            pts.append(p.copy())
+
+        curve = np.array(pts)
+        curves.append(curve)
+
+        if level < depth:
+
+            for _ in range(2):  # two branches
+
+                new_dir = d + np.random.normal(scale=0.5, size=3)
+                new_dir /= np.linalg.norm(new_dir)
+
+                branch(p, new_dir, level+1)
+
+    branch(np.zeros(3), v, 0)
+
+    return curves
+
+
+def sector_8_branching_tubes():
+
+    print("\n" + "="*60)
+    print(" SECTOR 8 — Branching Tube Simulation")
+    print("="*60)
+
+    N = 20
+    epsilon = 0.1
+
+    grid = np.random.uniform(-1,1,(2000,3))
+
+    directions = np.random.normal(size=(N,3))
+    directions /= np.linalg.norm(directions,axis=1).reshape(-1,1)
+
+    K = np.zeros(len(grid))
+
+    for v in directions:
+
+        branches = generate_branch(v)
+
+        for curve in branches:
+
+            dists = np.min(
+                np.linalg.norm(grid[:,None,:] - curve[None,:,:],axis=2),
+                axis=1
+            )
+
+            K += (dists <= epsilon).astype(float)
+
+    E = np.sum(K**2)
+
+    p = K/np.sum(K)
+    p = p[p>0]
+
+    H = -np.sum(p*np.log(p))
+
+    D = H/np.log(1/epsilon)
+
+    print(f"Overlap Energy E = {E:.4f}")
+    print(f"Entropy H = {H:.4f}")
+    print(f"Dimension Proxy D ≈ {D:.4f}")
+
+    pause()
+
+# ============================================================
+#  SECTOR 9 — ENTROPY & DIMENSION SCAN (Improved)
+# ============================================================
+
+def compute_dimension(epsilon, directions, grid):
+
+    K = np.zeros(len(grid))
+
+    for v in directions:
+
+        # higher resolution centerline
+        line = np.array([t*v for t in np.linspace(0,1,120)])
+
+        dists = np.min(
+            np.linalg.norm(grid[:,None,:] - line[None,:,:],axis=2),
+            axis=1
+        )
+
+        K += (dists <= epsilon).astype(float)
+
+    total = np.sum(K)
+
+    if total == 0:
+        return 0, 0
+
+    p = K / total
+    p = p[p > 0]
+
+    H = -np.sum(p*np.log(p))
+    D = H / np.log(1/epsilon)
+
+    return H, D
+
+
+def sector_9_entropy_scan():
+
+    print("\n" + "="*60)
+    print(" SECTOR 9 — Entropy & Dimension Scan (High Resolution)")
+    print("="*60)
+
+    epsilons = [0.25, 0.15, 0.10, 0.07, 0.05, 0.03]
+
+    N = 60
+
+    # much denser sampling
+    grid = np.random.uniform(-1,1,(12000,3))
+
+    directions = np.random.normal(size=(N,3))
+    directions /= np.linalg.norm(directions,axis=1).reshape(-1,1)
+
+    print("\nε Scan Results:\n")
+
+    for eps in epsilons:
+
+        H, D = compute_dimension(eps, directions, grid)
+
+        print(f"ε = {eps:.3f}  →  H = {H:.4f}   D ≈ {D:.4f}")
+
+    pause()
+
+# ============================================================
+#  SECTOR 10 — FULL KNCF STATE EVOLUTION
+# ============================================================
+
+def sector_10_full_evolution(tube_type='straight', steps=10, N=50, epsilon_start=0.1, grid_size=3000):
+    print("\n" + "="*60)
+    print(" SECTOR 10 — Full KNCF State Evolution")
+    print("="*60)
+
+    # Initial grid (will resize adaptively)
+    results = []
+
+    epsilon = epsilon_start
+    for step in range(steps):
+        # Adaptive grid sizing for small epsilon
+        adaptive_grid_size = max(grid_size, int(1/epsilon) * 100)
+        grid = np.random.uniform(-1, 1, (adaptive_grid_size, 3))
+
+        # Random directions
+        directions = np.random.normal(size=(N, 3))
+        directions /= np.linalg.norm(directions, axis=1).reshape(-1, 1)
+
+        # Density field
+        K = np.zeros(len(grid))
+        for v in directions:
+            if tube_type == 'straight':
+                line = np.array([t * v for t in np.linspace(0, 1, 50)])
+            elif tube_type == 'polygonal':
+                line = np.array([t * v for t in np.linspace(0, 1, 50)])  # could adapt Minkowski norm later
+            elif tube_type == 'curved':
+                line = np.array([t * v for t in np.linspace(0, 1, 50)])  # placeholder
+            elif tube_type == 'branching':
+                line = np.array([t * v for t in np.linspace(0, 1, 50)])  # placeholder
+            else:
+                line = np.array([t * v for t in np.linspace(0, 1, 50)])
+
+            dists = np.min(np.linalg.norm(grid[:, None, :] - line[None, :, :], axis=2), axis=1)
+            K += (dists <= epsilon).astype(float)
+
+        # Safe probability density, entropy, and dimension
+        total = np.sum(K)
+        if total > 0:
+            p = K / total
+            p_nonzero = p[p > 0]
+            H = -np.sum(p_nonzero * np.log(p_nonzero))
+            D = H / np.log(1/epsilon)
+        else:
+            p = np.zeros_like(K)
+            H = 0.0
+            D = 0.0
+
+        # Optional BTLIAD lambda / evolution metric (simple proxy)
+        lam = np.random.uniform(1, 10)  # placeholder, can replace with actual BTLIAD step
+
+        print(f"Step {step}: ε={epsilon:.5f}, E={np.sum(K**2):.2f}, H={H:.4f}, D≈{D:.4f}, λ={lam:.4f}")
+
+        results.append({
+            'step': step,
+            'epsilon': epsilon,
+            'overlap_energy': np.sum(K**2),
+            'entropy': H,
+            'dimension': D,
+            'lambda': lam
+        })
+
+        # Shrink epsilon geometrically
+        epsilon *= 0.738  # shrink factor, can adjust
+
+    pause()
+    return results
+
+# ============================================================
+#  SECTOR 11 — FULL KNCF STATE BTLIAD EVOLUTION
+# ============================================================
+
+def sector_11_full_evolution(tube_type='straight', steps=10, N=50, epsilon_start=0.1, grid_size=3000):
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    print("\n" + "="*60)
+    print(" SECTOR 11 — Full KNCF State BTLIAD Evolution")
+    print("="*60)
+
+    # Initial BTLIAD parameters
+    F_prev = M_prev = B_prev = E_prev = 1
+
+    # Arrays for logging / plotting
+    epsilons = []
+    energies = []
+    entropies = []
+    dimensions = []
+    btliad_vals = []
+
+    epsilon = epsilon_start
+    decay_factor = 0.738  # geometric decay factor
+
+    for step in range(steps):
+        current_grid_size = max(grid_size, int(1/epsilon) * 100)
+        grid = np.random.uniform(-1, 1, (current_grid_size, 3))
+
+        # Random directions
+        directions = np.random.normal(size=(N, 3))
+        directions /= np.linalg.norm(directions, axis=1).reshape(-1, 1)
+
+        # Density field
+        K = np.zeros(len(grid))
+        for v in directions:
+            line = np.array([t * v for t in np.linspace(0, 1, 50)])  # straight line for now
+            dists = np.min(np.linalg.norm(grid[:, None, :] - line[None, :, :], axis=2), axis=1)
+            K += (dists <= epsilon).astype(float)
+
+        # Overlap energy
+        E_total = np.sum(K**2)
+
+        # Safe probability, entropy, dimension
+        total = np.sum(K)
+        if total > 0:
+            p = K / total
+            p_nonzero = p[p > 0]
+            H = -np.sum(p_nonzero * np.log(p_nonzero))
+            D = H / np.log(1/epsilon)
+        else:
+            H = 0.0
+            D = 0.0
+
+        # BTLIAD evolution
+        n = step + 2  # start n=2
+        P = n**2.111
+        F = 1.111 * n
+        M = 3.333 * n
+        B = 0.111 * n
+        E_bt = 9.999 * n
+        V = P * (F_prev * M_prev + B_prev * E_prev)
+        F_prev, M_prev, B_prev, E_prev = F, M, B, E_bt
+
+        # Log values
+        epsilons.append(epsilon)
+        energies.append(E_total)
+        entropies.append(H)
+        dimensions.append(D)
+        btliad_vals.append(V)
+
+        print(f"Step {step}: ε={epsilon:.5f}, E={E_total:.2f}, H={H:.4f}, D≈{D:.4f}, V={V:.4f}")
+
+        # Decay epsilon
+        epsilon *= decay_factor
+
+    # Optional: Plot D vs ε
+    plt.figure(figsize=(6,4))
+    plt.plot(epsilons, dimensions, marker='o', color='teal')
+    plt.gca().invert_xaxis()
+    plt.xlabel("ε (Tube Thickness)")
+    plt.ylabel("Dimension Proxy D")
+    plt.title("Fractal-like Decay: D vs ε (BTLIAD)")
+    plt.grid(True)
+    plt.show()
+
+    return epsilons, energies, entropies, dimensions, btliad_vals
+
+# ============================================================
+#  SECTOR 12 — FULL FULL KNCF FULL STATE FULL BTLIAD FULL EVOLUTION
+# ============================================================
+
+def sector_12_full_full_evolution(steps=10, N=50, epsilon_start=0.1, grid_size=3000):
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    tube_types = ['straight', 'polygonal', 'curved', 'branching']
+    decay_factor = 0.738  # geometric shrink of epsilon
+
+    plt.figure(figsize=(7,5))
+
+    for tube_type in tube_types:
+        print("\n" + "="*60)
+        print(f" SECTOR 12 — Full Full KNCF Evolution for tube type: {tube_type.upper()}")
+        print("="*60)
+
+        # Initial BTLIAD parameters
+        F_prev = M_prev = B_prev = E_prev = 1
+
+        # Arrays for plotting
+        epsilons = []
+        dimensions = []
+
+        epsilon = epsilon_start
+
+        for step in range(steps):
+            current_grid_size = max(grid_size, int(1/epsilon) * 100)
+            grid = np.random.uniform(-1, 1, (current_grid_size, 3))
+
+            # Random directions
+            directions = np.random.normal(size=(N, 3))
+            directions /= np.linalg.norm(directions, axis=1).reshape(-1, 1)
+
+            # Density field
+            K = np.zeros(len(grid))
+            for v in directions:
+                line = np.array([t * v for t in np.linspace(0, 1, 50)])
+                dists = np.min(np.linalg.norm(grid[:, None, :] - line[None, :, :], axis=2), axis=1)
+                K += (dists <= epsilon).astype(float)
+
+            # Overlap energy
+            E_total = np.sum(K**2)
+
+            # Safe probability / entropy / dimension
+            total = np.sum(K)
+            if total > 0:
+                p = K / total
+                p_nonzero = p[p > 0]
+                H = -np.sum(p_nonzero * np.log(p_nonzero))
+                D = H / np.log(1/epsilon)
+            else:
+                H = 0.0
+                D = 0.0
+
+            # BTLIAD evolution
+            n = step + 2
+            P = n**2.111
+            F = 1.111 * n
+            M = 3.333 * n
+            B = 0.111 * n
+            E_bt = 9.999 * n
+            V = P * (F_prev * M_prev + B_prev * E_prev)
+            F_prev, M_prev, B_prev, E_prev = F, M, B, E_bt
+
+            # Print step
+            print(f"Step {step}: ε={epsilon:.5f}, E={E_total:.2f}, H={H:.4f}, D≈{D:.4f}, V={V:.4f}")
+
+            # Store for plot
+            epsilons.append(epsilon)
+            dimensions.append(D)
+
+            # Shrink epsilon
+            epsilon *= decay_factor
+
+        # Plot D vs ε for this tube type
+        plt.plot(epsilons, dimensions, marker='o', label=f"{tube_type}")
+
+    plt.gca().invert_xaxis()
+    plt.xlabel("ε (Tube Thickness)")
+    plt.ylabel("Dimension Proxy D")
+    plt.title("Sector 12: Full Full KNCF Evolution - D vs ε for All Tube Types")
+    plt.grid(True)
+    plt.legend()
+    plt.show()
+
+    pause()
+
+# ============================================================
+#  SECTOR 13 — RN-Biased Multi-Family Run
+# ============================================================
+
+def sector_13_rn_biased_multi_family(steps=10, N=50, epsilon_start=0.1, grid_size=3000):
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    print("\n" + "="*60)
+    print(" SECTOR 13 — RN-Biased Multi-Family Run")
+    print("="*60)
+
+    tube_types = ['straight', 'polygonal', 'curved', 'branching']
+    modes = ['uniform', 'rn_biased']  # Two modes for comparison
+    decay_factor = 0.738
+
+    # Prep multi-plot: one fig per mode, or overlay all
+    fig, axs = plt.subplots(1, 2, figsize=(12, 5), sharey=True)
+    axs[0].set_title("Uniform Directions: D vs ε")
+    axs[1].set_title("RN-Biased Directions: D vs ε")
+
+    for mode_idx, mode in enumerate(modes):
+        print(f"\n--- Mode: {mode.upper()} ---")
+        for tube_type in tube_types:
+            # Initial BTLIAD
+            F_prev = M_prev = B_prev = E_prev = 1
+
+            epsilons = []
+            dimensions = []
+
+            epsilon = epsilon_start
+
+            for step in range(steps):
+                current_grid_size = max(grid_size, int(1/epsilon) * 100)
+                grid = np.random.uniform(-1, 1, (current_grid_size, 3))
+
+                # Directions: uniform vs RN-biased
+                if mode == 'uniform':
+                    directions = np.random.normal(size=(N, 3))
+                    directions /= np.linalg.norm(directions, axis=1).reshape(-1, 1)
+                else:  # RN-biased: weight by RN_n
+                    rn_weights = [rn(i) for i in range(1, N+1)]
+                    rn_probs = np.array(rn_weights) / sum(rn_weights)
+                    # Sample directions with bias (e.g., cluster around weighted axes)
+                    base_dirs = np.random.normal(size=(N, 3))  # Base
+                    directions = base_dirs * rn_probs.reshape(-1, 1)  # Bias magnitude
+                    directions /= np.linalg.norm(directions, axis=1).reshape(-1, 1) + 1e-10
+
+                # Density field (placeholder; extend for polygonal/curved/branching as in prior sectors)
+                K = np.zeros(len(grid))
+                for v in directions:
+                    line = np.array([t * v for t in np.linspace(0, 1, 50)])
+                    dists = np.min(np.linalg.norm(grid[:, None, :] - line[None, :, :], axis=2), axis=1)
+                    K += (dists <= epsilon).astype(float)
+
+                E_total = np.sum(K**2)
+
+                total = np.sum(K)
+                if total > 0:
+                    p = K / total
+                    p_nonzero = p[p > 0]
+                    H = -np.sum(p_nonzero * np.log(p_nonzero))
+                    D = H / np.log(1/epsilon) if epsilon < 1 else 0
+                else:
+                    H = 0.0
+                    D = 0.0
+
+                # BTLIAD
+                n = step + 2
+                P = n ** 2.111
+                F = 1.111 * n
+                M = 3.333 * n
+                B = 0.111 * n
+                E_bt = 9.999 * n
+                V = P * (F_prev * M_prev + B_prev * E_prev)
+                F_prev, M_prev, B_prev, E_prev = F, M, B, E_bt
+
+                print(f"{tube_type.capitalize()} Step {step}: ε={epsilon:.5f}, E={E_total:.2f}, H={H:.4f}, D≈{D:.4f}, V={V:.4f}")
+
+                epsilons.append(epsilon)
+                dimensions.append(D)
+
+                epsilon *= decay_factor
+
+            # Plot per tube_type per mode
+            axs[mode_idx].plot(epsilons, dimensions, marker='o', label=tube_type)
+            axs[mode_idx].invert_xaxis()
+            axs[mode_idx].set_xlabel("ε (Tube Thickness)")
+            axs[mode_idx].set_ylabel("Dimension Proxy D")
+            axs[mode_idx].grid(True)
+            axs[mode_idx].legend()
+
+    plt.tight_layout()
+    plt.show()
+
+    pause()
+
+# ============================================================
+#  SECTOR 14 — Curvature & Branching Parameter Sweep
+# ============================================================
+
+def sector_14_param_sweep(steps=10, N=50, epsilon_start=0.1, grid_size=3000):
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    print("\n" + "="*60)
+    print(" SECTOR 14 — Curvature & Branching Parameter Sweep")
+    print("="*60)
+
+    # User selects family
+    families = ['curved', 'branching']
+    print("\nSelect Family to Sweep:")
+    print("Options:", ", ".join(families))
+    family = input("Enter family (default='curved'): ").strip().lower()
+    if family not in families:
+        print("Defaulting to 'curved'")
+        family = 'curved'
+
+    # Param ranges
+    if family == 'curved':
+        param_name = 'K (curvature bound)'
+        param_values = [0.1, 0.5, 1.0, 2.0]
+    else:
+        param_name = 'b (branch depth)'
+        param_values = [1, 2, 3, 4]
+
+    decay_factor = 0.738
+
+    plt.figure(figsize=(7,5))
+    plt.title(f"{family.capitalize()} Sweep: D vs ε by {param_name}")
+
+    for param in param_values:
+        # Initial BTLIAD per param run
+        F_prev = M_prev = B_prev = E_prev = 1
+        epsilons = []
+        dimensions = []
+        epsilon = epsilon_start
+
+        for step in range(steps):
+            current_grid_size = max(grid_size, int(1/epsilon) * 100)
+            grid = np.random.uniform(-1, 1, (current_grid_size, 3))
+            directions = np.random.normal(size=(N, 3))
+            directions /= np.linalg.norm(directions, axis=1).reshape(-1, 1)
+            K = np.zeros(len(grid))
+            for v in directions:
+                if family == 'curved':
+                    curve = random_curve(v, curvature=param)
+                else:
+                    branches = generate_branch(v, depth=param)
+                    curve = np.vstack(branches) if branches else np.array([t * v for t in np.linspace(0, 1, 50)])
+                dists = np.min(np.linalg.norm(grid[:, None, :] - curve[None, :, :], axis=2), axis=1)
+                K += (dists <= epsilon).astype(float)
+
+            E_total = np.sum(K**2)
+
+            total = np.sum(K)
+            if total > 0:
+                p = K / total
+                p_nonzero = p[p > 0]
+                H = -np.sum(p_nonzero * np.log(p_nonzero))
+                D = H / np.log(1/epsilon) if epsilon < 1 else 0
+            else:
+                H = 0.0
+                D = 0.0
+
+            # BTLIAD
+            n = step + 2
+            P = n ** 2.111
+            F = 1.111 * n
+            M = 3.333 * n
+            B = 0.111 * n
+            E_bt = 9.999 * n
+            V = P * (F_prev * M_prev + B_prev * E_prev)
+            F_prev, M_prev, B_prev, E_prev = F, M, B, E_bt
+
+            print(f"{param_name}={param} Step {step}: ε={epsilon:.5f}, E={E_total:.2f}, H={H:.4f}, D≈{D:.4f}, V={V:.4f}")
+
+            epsilons.append(epsilon)
+            dimensions.append(D)
+            epsilon *= decay_factor
+
+        # Plot THIS param's curve
+        plt.plot(epsilons, dimensions, marker='o', label=f"{param_name}={param}")
+
+    # Final touches
+    ax = plt.gca()
+    ax.invert_xaxis()
+    ax.set_xlabel("ε (Tube Thickness)")
+    ax.set_ylabel("Dimension Proxy D")
+    ax.grid(True)
+    ax.legend()
+    plt.show()
+
+    pause()
+
+
+# ============================================================
+#  SECTOR 15 — Echo-Residue Multi-Family Stability Crown
+# ============================================================
+
+def sector_15_echo_stability(steps=10, N=50, epsilon_start=0.1, grid_size=3000):
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    print("\n" + "="*60)
+    print(" SECTOR 15 — Echo-Residue Multi-Family Stability Crown")
+    print("="*60)
+
+    tube_types = ['straight', 'polygonal', 'curved', 'branching']
+
+    use_rn_bias_input = input("Use RN-biased directions? (y/n, default=n): ").strip().lower()
+    use_rn_bias = use_rn_bias_input == 'y'
+
+    decay_factor = 0.738
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6), sharex=True)
+    fig.suptitle("Echo-Residue Stability: D vs ε | Ø⁰ vs ε")
+
+    results_table = []
+
+    for tube_type in tube_types:
+        F_prev = M_prev = B_prev = E_prev = 1
+        epsilons = []
+        ds = []
+        o0s = []
+
+        epsilon = epsilon_start
+
+        for step in range(steps):
+            current_grid_size = max(grid_size, int(1/epsilon) * 100)
+            grid = np.random.uniform(-1, 1, (current_grid_size, 3))
+
+            # Directions
+            if use_rn_bias:
+                rn_weights = [rn(i) for i in range(1, N+1)]  # assumes your rn() fn exists
+                rn_probs = np.array(rn_weights) / sum(rn_weights)
+                base_dirs = np.random.normal(size=(N, 3))
+                directions = base_dirs * rn_probs.reshape(-1, 1)
+                directions /= np.linalg.norm(directions, axis=1).reshape(-1, 1) + 1e-10
+            else:
+                directions = np.random.normal(size=(N, 3))
+                directions /= np.linalg.norm(directions, axis=1).reshape(-1, 1)
+
+            # Density field (placeholder — extend for curved/branching/polys as needed)
+            K = np.zeros(len(grid))
+            for v in directions:
+                line = np.array([t * v for t in np.linspace(0, 1, 50)])
+                dists = np.min(np.linalg.norm(grid[:, None, :] - line[None, :, :], axis=2), axis=1)
+                K += (dists <= epsilon).astype(float)
+
+            E_total = np.sum(K**2)
+
+            total = np.sum(K)
+            if total > 0:
+                p = K / total
+                p_nonzero = p[p > 0]
+                H = -np.sum(p_nonzero * np.log(p_nonzero))
+                D = H / np.log(1/epsilon) if epsilon < 1 else 0
+            else:
+                H = 0.0
+                D = 0.0
+
+            # Echo-residue Ø⁰
+            void_frac = np.mean(K == 0)
+            sinc_mean = np.mean(np.sin(K) / (K + 1e-10))
+            O0 = sinc_mean + void_frac
+
+            # BTLIAD
+            n = step + 2
+            P = n ** 2.111
+            F = 1.111 * n
+            M = 3.333 * n
+            B = 0.111 * n
+            E_bt = 9.999 * n
+            V = P * (F_prev * M_prev + B_prev * E_prev)
+            F_prev, M_prev, B_prev, E_prev = F, M, B, E_bt
+
+            print(f"{tube_type.capitalize()} Step {step}: ε={epsilon:.5f}, E={E_total:.2f}, D≈{D:.4f}, Ø⁰={O0:.4f}, V={V:.4f}")
+
+            epsilons.append(epsilon)
+            ds.append(D)
+            o0s.append(O0)
+
+            epsilon *= decay_factor
+
+        # Plot D (left axis)
+        ax1.plot(epsilons, ds, marker='o', label=tube_type)
+        # Plot Ø⁰ (right axis)
+        ax2.plot(epsilons, o0s, marker='x', linestyle='--', label=tube_type)
+
+        # Final classification
+        final_D = ds[-1]
+        final_O0 = o0s[-1]
+        if final_O0 > 1.2 and final_D < 0.4:
+            status = "Collapse (high void echo + low D)"
+        elif 0.6 < final_O0 <= 1.2 and 0.4 <= final_D <= 1.0:
+            status = "Balanced"
+        else:
+            status = "Chaotic / Other"
+
+        results_table.append([tube_type, f"{final_D:.4f}", f"{final_O0:.4f}", status])
+
+    # Finalize plots
+    ax1.invert_xaxis()
+    ax1.set_xlabel("ε (Tube Thickness)")
+    ax1.set_ylabel("Dimension Proxy D")
+    ax1.grid(True)
+    ax1.legend(title="D curves")
+
+    ax2.invert_xaxis()
+    ax2.set_xlabel("ε (Tube Thickness)")
+    ax2.set_ylabel("Echo-Residue Ø⁰")
+    ax2.grid(True)
+    ax2.legend(title="Ø⁰ curves")
+
+    plt.tight_layout()
+    plt.show()
+
+    # Stability Crown Table (plain print, no tabulate)
+    print("\nStability Crown Table (Final ε ≈ 0.00649)")
+    print("-" * 70)
+    print(f"{'Family':<12} {'Final D':<12} {'Final Ø⁰':<12} {'Classification'}")
+    print("-" * 70)
+    for row in results_table:
+        family, final_d, final_o0, status = row
+        print(f"{family:<12} {final_d:<12} {final_o0:<12} {status}")
+    print("-" * 70)
+
+    pause()
+
+# ============================================================
+# SECTOR 16 — High-Curvature Collapse Probe (v2.0 - Fixed & Upgraded)
+# ============================================================
+def sector_16_high_curvature_collapse(realizations=20, steps=12, N=200, epsilon_start=0.05, grid_size=50000):
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import time
+
+    print("\n" + "="*70)
+    print(" SECTOR 16 — High-Curvature Collapse Probe (Curved tubes) - v2.0")
+    print("="*70)
+
+    # Hypothesis & opposing sub upfront
+    print("\n" + "-"*80)
+    print("HYPOTHESIS UNDER TEST (High-Curvature Collapse):")
+    print("For curved tubes with curvature bound K ≥ 1.5,")
+    print("the numerical Minkowski dimension proxy D is expected to fall")
+    print("below 0.45 at ε ≤ 0.01 in >75% of realizations — indicating")
+    print("faster apparent collapse than straight tubes.")
+    print("\nOPPOSING SUB-HYPOTHESIS:")
+    print("If % D < 0.45 ≤ 50% at high K, curvature does not significantly")
+    print("accelerate dimensional collapse beyond moderate levels,")
+    print("suggesting geometry-limited packing efficiency.")
+    print("-"*80 + "\n")
+
+    # Run mode toggle
+    mode_input = input("Run mode [1] Single (default) [2] Brute-force loop (auto-vary): ").strip()
+    brute_force = mode_input == '2'
+
+    cycle = 0
+    while True:
+        cycle += 1
+        if brute_force:
+            print(f"\n=== Brute-Force Cycle {cycle} (N={N}, grid={grid_size}, realizations={realizations}, ε_start={epsilon_start:.4f}) ===")
+
+        K_values = [1.0, 1.5, 2.0, 3.0]
+        decay_factor = 0.75
+        thresholds = [0.45, 0.40, 0.35]  # collapse threshold sweep
+
+        all_results = {k: {'final_Ds': [], 'trajectories': [], 'decay_slopes': []} for k in K_values}
+        straight_final_Ds = []  # baseline
+
+        plt.figure(figsize=(12, 8))
+        plt.suptitle(f"High-Curvature Collapse - Cycle {cycle} ({realizations} realizations)")
+
+        # Run straight baseline first (quick, 5 realizations)
+        print("Running straight-tube baseline (5 realizations)...")
+        for r in range(5):
+            epsilon = epsilon_start
+            Ds = []
+            for step in range(steps):
+                current_grid = max(grid_size, int(1/epsilon) * 200)
+                grid = np.random.uniform(-1, 1, (current_grid, 3))
+                directions = np.random.normal(size=(N, 3))
+                directions /= np.linalg.norm(directions, axis=1)[:, None]
+                K_field = np.zeros(len(grid))
+                for v in directions:
+                    line = np.array([t * v for t in np.linspace(0, 1, 50)])
+                    dists = np.min(np.linalg.norm(grid[:, None, :] - line[None, :, :], axis=2), axis=1)
+                    K_field += (dists <= epsilon).astype(float)
+                total = np.sum(K_field)
+                if total > 0:
+                    p = K_field / total
+                    p_nonzero = p[p > 0]
+                    H = -np.sum(p_nonzero * np.log(p_nonzero))
+                    D = max(0, H / np.log(1/epsilon)) if epsilon < 1 else 0
+                else:
+                    D = 0.0
+                Ds.append(D)
+                epsilon *= decay_factor
+            straight_final_Ds.append(Ds[-1])
+
+        mean_straight = np.mean(straight_final_Ds)
+        print(f"Straight baseline mean D = {mean_straight:.4f}")
+
+        for K in K_values:
+            print(f"\n--- Curvature K = {K} ---")
+            final_D_list = []
+            all_trajectories = []  # list of (steps,) arrays per realization
+
+            for r in range(realizations):
+                print(f"  Realization {r+1}/{realizations}", end=" ... ")
+                epsilon = epsilon_start
+                Ds = []
+                for step in range(steps):
+                    current_grid = max(grid_size, int(1/epsilon) * 200)
+                    grid = np.random.uniform(-1, 1, (current_grid, 3))
+                    directions = np.random.normal(size=(N, 3))
+                    directions /= np.linalg.norm(directions, axis=1)[:, None]
+
+                    K_field = np.zeros(len(grid))
+                    for v in directions:
+                        curve = random_curve(v, curvature=K)
+                        dists = np.min(np.linalg.norm(grid[:, None, :] - curve[None, :, :], axis=2), axis=1)
+                        K_field += (dists <= epsilon).astype(float)
+
+                    total = np.sum(K_field)
+                    if total > 0:
+                        p = K_field / total
+                        p_nonzero = p[p > 0]
+                        H = -np.sum(p_nonzero * np.log(p_nonzero))
+                        D = max(0, H / np.log(1/epsilon)) if epsilon < 1 else 0
+                    else:
+                        D = 0.0
+
+                    Ds.append(D)
+                    epsilon *= decay_factor
+
+                final_D_list.append(Ds[-1])
+                all_trajectories.append(np.array(Ds))
+                print(f"final D = {Ds[-1]:.4f}")
+
+                if r == 0:
+                    avg_eps = [epsilon_start * (decay_factor ** i) for i in range(steps)]
+
+            # Average trajectory for plotting
+            avg_Ds = np.mean(all_trajectories, axis=0)  # shape = (steps,)
+            plt.plot(avg_eps, avg_Ds, marker='o', label=f"K={K}")
+
+            mean_final_D = np.mean(final_D_list)
+            std_final_D = np.std(final_D_list)
+            below_045 = np.mean(np.array(final_D_list) < 0.45) * 100
+
+            # Adjusted slope (mid-range only)
+            valid_mask = (avg_Ds > 0.01) & (np.array(avg_eps) < 0.1)
+            slope = 0.0
+            if np.sum(valid_mask) >= 3:
+                valid_eps = np.array(avg_eps)[valid_mask]
+                valid_D = avg_Ds[valid_mask]
+                log_eps = np.log(valid_eps)
+                log_D = np.log(valid_D + 1e-10)
+                slope = np.polyfit(log_eps, log_D, 1)[0]
+
+            all_results[K]['final_Ds'] = final_D_list
+            all_results[K]['decay_slopes'].append(slope)
+
+        plt.gca().invert_xaxis()
+        plt.xlabel("ε (Tube Thickness)")
+        plt.ylabel("Avg Dimension Proxy D")
+        plt.grid(True)
+        plt.legend()
+        plt.show()
+
+        # Summary table
+        print("\nHigh-Curvature Collapse Summary ({} realizations)".format(realizations))
+        print("-" * 100)
+        print(f"{'K':<6} {'Mean D ± std':<18} {'% <0.45':<10} {'% <0.40':<10} {'% <0.35':<10} {'Adj. slope':<12}")
+        print("-" * 100)
+        high_k_below = []
+        for K in K_values:
+            Ds = all_results[K]['final_Ds']
+            mean_d = np.mean(Ds)
+            std_d = np.std(Ds)
+            pct_045 = np.mean(np.array(Ds) < 0.45) * 100
+            pct_040 = np.mean(np.array(Ds) < 0.40) * 100
+            pct_035 = np.mean(np.array(Ds) < 0.35) * 100
+            slope = all_results[K]['decay_slopes'][0] if all_results[K]['decay_slopes'] else 0.0
+            print(f"{K:<6} {mean_d:.4f} ± {std_d:.4f} {pct_045:<10.1f} {pct_040:<10.1f} {pct_035:<10.1f} {slope:<12.3f}")
+            if K >= 1.5:
+                high_k_below.append(pct_045)
+        print("-" * 100)
+        overall_high_k = np.mean(high_k_below) if high_k_below else 0
+        print(f"Overall % D < 0.45 for K ≥ 1.5: {overall_high_k:.1f}%")
+        if overall_high_k > 75:
+            print("STRONG EVIDENCE: Hypothesis supported (>75% collapse rate at high K)")
+        elif overall_high_k > 50:
+            print("MODERATE EVIDENCE: Hypothesis partially supported")
+        else:
+            print("WEAK EVIDENCE: Hypothesis not strongly supported")
+            print("OPPOSING SUB-HYPOTHESIS WINS: Curvature does not significantly accelerate collapse")
+
+        if not brute_force:
+            pause()
+            break
+
+        # Brute-force next cycle
+        print("\nCycle {} complete. Next cycle starts in 10 seconds... (Ctrl+C to stop)".format(cycle))
+        try:
+            for i in range(10, 0, -1):
+                print(f"{i} ", end="", flush=True)
+                time.sleep(1)
+            print("\nStarting next cycle...")
+        except KeyboardInterrupt:
+            print("\nInterrupted! Exiting brute-force.")
+            pause()
+            break
+
+        # Mutate params
+        N = int(N * 1.1)
+        grid_size = int(grid_size * 1.2)
+        realizations = min(realizations + 5, 50)
+        epsilon_start *= 0.95
+# ============================================================
+# SECTOR 17 — RN-Bias Reduction Quantifier (v2.0 - Fixed KDTree Query Direction)
+# ============================================================
+def sector_17_rn_bias_reduction(realizations=20, steps=12, N=200, epsilon_start=0.05, grid_size=50000):
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import time
+    from scipy.spatial import cKDTree
+
+    print("\n" + "="*70)
+    print(" SECTOR 17 — RN-Bias Reduction Quantifier (Uniform vs RN) - v2.0")
+    print("="*70)
+
+    # Hypothesis & opposing sub
+    print("\n" + "-"*80)
+    print("HYPOTHESIS UNDER TEST (RN-Bias Reduction):")
+    print("RN-biased directional clustering reduces the final dimension proxy D")
+    print("by 0.10–0.25 on average compared to uniform sampling across all families —")
+    print("suggesting directional anisotropy may enable more efficient packing")
+    print("and sub-3 dimensional Kakeya-like sets.")
+    print("\nOPPOSING SUB-HYPOTHESIS:")
+    print("If mean ΔD ≤ 0.05 or RN D higher than uniform in >50% of realizations,")
+    print("then RN-bias does not significantly reduce effective dimension,")
+    print("indicating directional clustering may not improve packing efficiency")
+    print("or could even increase apparent dimension.")
+    print("-"*80 + "\n")
+
+    # Brute-force mode toggle
+    mode_input = input("Run mode [1] Single (default) [2] Brute-force loop (auto-vary params): ").strip()
+    brute_force = mode_input == '2'
+
+    cycle = 0
+    while True:
+        cycle += 1
+        if brute_force:
+            print(f"\n=== Brute-Force Cycle {cycle} (N={N}, grid={grid_size}, realizations={realizations}, ε_start={epsilon_start:.4f}) ===")
+
+        tube_types = ['straight', 'polygonal', 'curved', 'branching']
+        modes = ['uniform', 'rn_biased']
+        decay_factor = 0.75
+        thresholds = [0.45, 0.40, 0.35]
+
+        results = {t: {m: [] for m in modes} for t in tube_types}
+
+        plt.figure(figsize=(12, 8))
+        plt.suptitle(f"RN-Bias Effect - Cycle {cycle} ({realizations} realizations per mode)")
+
+        # Reuse grid across all steps and modes (but we build curve_tree per curve)
+        max_grid = max(grid_size, int(1/epsilon_start) * 200)
+        grid = np.random.uniform(-1, 1, (max_grid, 3))
+
+        for tube_type in tube_types:
+            print(f"\n=== {tube_type.capitalize()} ===")
+            for mode in modes:
+                print(f"  Mode: {mode.upper()}")
+                final_D_list = []
+                avg_eps = []
+                avg_Ds = np.zeros(steps)
+                std_Ds = np.zeros(steps)
+
+                for r in range(realizations):
+                    print(f"    Realization {r+1}/{realizations}", end=" ... ")
+                    epsilon = epsilon_start
+                    Ds = []
+
+                    for step in range(steps):
+                        if mode == 'rn_biased':
+                            rn_weights = [rn(i) for i in range(1, N+1)]
+                            rn_probs = np.array(rn_weights) / sum(rn_weights)
+                            indices = np.random.choice(np.arange(N), size=N, p=rn_probs)
+                            directions = np.random.normal(size=(N, 3))[indices]
+                            directions /= np.linalg.norm(directions, axis=1)[:, None] + 1e-10
+                        else:
+                            directions = np.random.normal(size=(N, 3))
+                            directions /= np.linalg.norm(directions, axis=1)[:, None]
+
+                        K = np.zeros(len(grid))
+                        for v in directions:
+                            if tube_type == 'straight':
+                                curve = np.array([t * v for t in np.linspace(0, 1, 50)])
+                            elif tube_type == 'polygonal':
+                                curve = np.array([t * v for t in np.linspace(0, 1, 50)])
+                                # Placeholder - replace with polygon_norm_dist when ready
+                            elif tube_type == 'curved':
+                                curve = random_curve(v, curvature=1.5)
+                            elif tube_type == 'branching':
+                                branches = generate_branch(v, depth=3)
+                                curve = np.vstack(branches) if branches else np.array([t * v for t in np.linspace(0, 1, 50)])
+
+                            # FIXED: build tree on curve points, query grid against it
+                            curve_tree = cKDTree(curve)
+                            min_dists, _ = curve_tree.query(grid)  # shape = (len(grid),)
+                            K += (min_dists <= epsilon).astype(float)
+
+                        total = np.sum(K)
+                        if total > 0:
+                            p = K / total
+                            p_nonzero = p[p > 0]
+                            H = -np.sum(p_nonzero * np.log(p_nonzero))
+                            D = max(0, H / np.log(1/epsilon)) if epsilon < 1 else 0
+                        else:
+                            D = 0.0
+
+                        Ds.append(D)
+                        epsilon *= decay_factor
+
+                    final_D_list.append(Ds[-1])
+                    print(f"final D = {Ds[-1]:.4f}")
+
+                    if r == 0:
+                        avg_eps = [epsilon_start * (decay_factor ** i) for i in range(steps)]
+                    avg_Ds += np.array(Ds)
+                    std_Ds += np.array(Ds)**2
+
+                avg_Ds /= realizations
+                std_Ds = np.sqrt(std_Ds / realizations - avg_Ds**2)
+
+                plt.plot(avg_eps, avg_Ds, marker='o' if mode == 'uniform' else 'x',
+                         linestyle='-' if mode == 'uniform' else '--',
+                         label=f"{tube_type} {mode}")
+
+                mean_final_D = np.mean(final_D_list)
+                std_final_D = np.std(final_D_list)
+                results[tube_type][mode] = final_D_list
+
+                print(f"    → Mean final D = {mean_final_D:.4f} ± {std_final_D:.4f}")
+
+        plt.gca().invert_xaxis()
+        plt.xlabel("ε (Tube Thickness)")
+        plt.ylabel("Avg Dimension Proxy D")
+        plt.grid(True)
+        plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+        plt.tight_layout()
+        plt.show()
+
+        # Delta table + verdict
+        print("\nRN-Bias Reduction Summary (ΔD = D_uniform - D_RN)")
+        print("-" * 100)
+        print(f"{'Family':<12} {'Mean D_uniform':<18} {'Mean D_RN':<18} {'Mean ΔD':<12} {'% RN lower':<12}")
+        print("-" * 100)
+        deltas = []
+        pct_lowers = []
+        for t in tube_types:
+            d_uni = results[t]['uniform']
+            d_rn = results[t]['rn_biased']
+            mean_uni = np.mean(d_uni)
+            mean_rn = np.mean(d_rn)
+            delta = mean_uni - mean_rn
+            pct_lower = np.mean(np.array(d_rn) < np.array(d_uni)) * 100
+            print(f"{t:<12} {mean_uni:.4f} ± {np.std(d_uni):.4f} {mean_rn:.4f} ± {np.std(d_rn):.4f} {delta:<12.4f} {pct_lower:<12.1f}")
+            deltas.append(delta)
+            pct_lowers.append(pct_lower)
+        print("-" * 100)
+        avg_delta = np.mean(deltas)
+        avg_pct_lower = np.mean(pct_lowers)
+        print(f"Overall mean ΔD: {avg_delta:.4f}")
+        print(f"Overall % runs RN lower: {avg_pct_lower:.1f}%")
+        if avg_delta > 0.10 and avg_pct_lower > 70:
+            print("STRONG EVIDENCE: Hypothesis supported (RN reduces D significantly)")
+        elif avg_delta > 0.05 and avg_pct_lower > 55:
+            print("MODERATE EVIDENCE: Hypothesis partially supported")
+        else:
+            print("WEAK EVIDENCE: Hypothesis not strongly supported")
+            print("OPPOSING SUB-HYPOTHESIS WINS: RN-bias does not significantly reduce dimension")
+
+        if not brute_force:
+            pause()
+            break
+
+        # Brute-force next cycle
+        print("\nCycle {} complete. Next cycle starts in 10 seconds... (Ctrl+C to stop)".format(cycle))
+        try:
+            for i in range(10, 0, -1):
+                print(f"{i} ", end="", flush=True)
+                time.sleep(1)
+            print("\nStarting next cycle...")
+        except KeyboardInterrupt:
+            print("\nInterrupted! Exiting brute-force.")
+            pause()
+            break
+
+        # Mutate params
+        N = int(N * 1.1)
+        grid_size = int(grid_size * 1.2)
+        realizations = min(realizations + 5, 50)
+        epsilon_start *= 0.95
+
+
+# ============================================================
+# SECTOR 18 — Branching Depth Efficiency Hammer (v2.0)
+# ============================================================
+def sector_18_branching_depth_hammer(realizations=20, steps=12, N=200, epsilon_start=0.05, grid_size=50000):
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import time
+
+    print("\n" + "="*70)
+    print(" SECTOR 18 — Branching Depth Efficiency Hammer - v2.0")
+    print("="*70)
+
+    # Hypothesis & opposing sub upfront
+    print("\n" + "-"*80)
+    print("HYPOTHESIS UNDER TEST (Branching Depth Efficiency):")
+    print("Branching tubes with depth ≥ 3 produce the lowest average final D proxy")
+    print("among all families (frequently < 0.35 at ε ≈ 0.005 in >75% of realizations),")
+    print("potentially indicating near-logarithmic packing efficiency in hierarchical")
+    print("tube structures.")
+    print("\nOPPOSING SUB-HYPOTHESIS:")
+    print("If mean D for depth ≥ 3 is not the lowest or % D < 0.35 ≤ 50%,")
+    print("then higher branching depth does not lower effective dimension,")
+    print("suggesting hierarchical structures may saturate or increase D due to")
+    print("redundancy in branching.")
+    print("-"*80 + "\n")
+
+    # Run mode toggle
+    mode_input = input("Run mode [1] Single (default) [2] Brute-force loop (auto-vary): ").strip()
+    brute_force = mode_input == '2'
+
+    cycle = 0
+    while True:
+        cycle += 1
+        if brute_force:
+            print(f"\n=== Brute-Force Cycle {cycle} (N={N}, grid={grid_size}, realizations={realizations}, ε_start={epsilon_start:.4f}) ===")
+
+        depths = [1, 2, 3, 4, 5]
+        decay_factor = 0.75
+        thresholds = [0.35, 0.30, 0.25]
+
+        all_results = {d: {'final_Ds': [], 'trajectories': [], 'decay_slopes': []} for d in depths}
+        straight_final_Ds = []  # baseline
+
+        plt.figure(figsize=(10, 6))
+        plt.title(f"Branching Depth Efficiency - Cycle {cycle} ({realizations} realizations)")
+
+        # Straight baseline (5 realizations)
+        print("Running straight-tube baseline (5 realizations)...")
+        for r in range(5):
+            epsilon = epsilon_start
+            Ds = []
+            for step in range(steps):
+                current_grid = max(grid_size, int(1/epsilon) * 200)
+                grid = np.random.uniform(-1, 1, (current_grid, 3))
+                directions = np.random.normal(size=(N, 3))
+                directions /= np.linalg.norm(directions, axis=1)[:, None]
+                K_field = np.zeros(len(grid))
+                for v in directions:
+                    line = np.array([t * v for t in np.linspace(0, 1, 50)])
+                    dists = np.min(np.linalg.norm(grid[:, None, :] - line[None, :, :], axis=2), axis=1)
+                    K_field += (dists <= epsilon).astype(float)
+                total = np.sum(K_field)
+                if total > 0:
+                    p = K_field / total
+                    p_nonzero = p[p > 0]
+                    H = -np.sum(p_nonzero * np.log(p_nonzero))
+                    D = max(0, H / np.log(1/epsilon)) if epsilon < 1 else 0
+                else:
+                    D = 0.0
+                Ds.append(D)
+                epsilon *= decay_factor
+            straight_final_Ds.append(Ds[-1])
+
+        mean_straight = np.mean(straight_final_Ds)
+        print(f"Straight baseline mean D = {mean_straight:.4f}")
+
+        for depth in depths:
+            print(f"\n--- Branch Depth = {depth} ---")
+            final_D_list = []
+            all_trajectories = []
+
+            for r in range(realizations):
+                print(f"  Realization {r+1}/{realizations}", end=" ... ")
+                epsilon = epsilon_start
+                Ds = []
+
+                for step in range(steps):
+                    current_grid = max(grid_size, int(1/epsilon) * 200)
+                    grid = np.random.uniform(-1, 1, (current_grid, 3))
+                    directions = np.random.normal(size=(N, 3))
+                    directions /= np.linalg.norm(directions, axis=1)[:, None]
+
+                    K_field = np.zeros(len(grid))
+                    for v in directions:
+                        branches = generate_branch(v, depth=depth)
+                        curve = np.vstack(branches) if branches else np.array([t * v for t in np.linspace(0, 1, 50)])
+                        dists = np.min(np.linalg.norm(grid[:, None, :] - curve[None, :, :], axis=2), axis=1)
+                        K_field += (dists <= epsilon).astype(float)
+
+                    total = np.sum(K_field)
+                    if total > 0:
+                        p = K_field / total
+                        p_nonzero = p[p > 0]
+                        H = -np.sum(p_nonzero * np.log(p_nonzero))
+                        D = max(0, H / np.log(1/epsilon)) if epsilon < 1 else 0
+                    else:
+                        D = 0.0
+
+                    Ds.append(D)
+                    epsilon *= decay_factor
+
+                final_D_list.append(Ds[-1])
+                all_trajectories.append(np.array(Ds))
+                print(f"final D = {Ds[-1]:.4f}")
+
+                if r == 0:
+                    avg_eps = [epsilon_start * (decay_factor ** i) for i in range(steps)]
+
+            # Average trajectory
+            avg_Ds = np.mean(all_trajectories, axis=0)
+            plt.plot(avg_eps, avg_Ds, marker='o', label=f"depth={depth}")
+            plt.fill_between(avg_eps, avg_Ds - np.std(all_trajectories, axis=0), avg_Ds + np.std(all_trajectories, axis=0), alpha=0.15)
+
+            mean_final_D = np.mean(final_D_list)
+            std_final_D = np.std(final_D_list)
+            pct_035 = np.mean(np.array(final_D_list) < 0.35) * 100
+
+            # Adjusted slope (mid-range)
+            valid_mask = (avg_Ds > 0.01) & (np.array(avg_eps) < 0.1)
+            slope = 0.0
+            if np.sum(valid_mask) >= 3:
+                valid_eps = np.array(avg_eps)[valid_mask]
+                valid_D = avg_Ds[valid_mask]
+                log_eps = np.log(valid_eps)
+                log_D = np.log(valid_D + 1e-10)
+                slope = np.polyfit(log_eps, log_D, 1)[0]
+
+            all_results[depth]['final_Ds'] = final_D_list
+            all_results[depth]['decay_slopes'].append(slope)
+
+            print(f"  → Mean final D = {mean_final_D:.4f} ± {std_final_D:.4f}")
+            print(f"  → % realizations with D < 0.35 = {pct_035:.1f}%")
+            print(f"  → Adjusted late decay slope ≈ {slope:.3f}")
+
+        plt.gca().invert_xaxis()
+        plt.xlabel("ε (Tube Thickness)")
+        plt.ylabel("Avg Dimension Proxy D")
+        plt.grid(True)
+        plt.legend()
+        plt.show()
+
+        # Summary table + verdict
+        print("\nBranching Depth Efficiency Summary ({} realizations)".format(realizations))
+        print("-" * 100)
+        print(f"{'Depth':<8} {'Mean D ± std':<18} {'% <0.35':<10} {'% <0.30':<10} {'% <0.25':<10} {'Adj. slope':<12}")
+        print("-" * 100)
+        high_depth_below = []
+        for depth in depths:
+            Ds = all_results[depth]['final_Ds']
+            mean_d = np.mean(Ds)
+            std_d = np.std(Ds)
+            pct_035 = np.mean(np.array(Ds) < 0.35) * 100
+            pct_030 = np.mean(np.array(Ds) < 0.30) * 100
+            pct_025 = np.mean(np.array(Ds) < 0.25) * 100
+            slope = all_results[depth]['decay_slopes'][0] if all_results[depth]['decay_slopes'] else 0.0
+            print(f"{depth:<8} {mean_d:.4f} ± {std_d:.4f} {pct_035:<10.1f} {pct_030:<10.1f} {pct_025:<10.1f} {slope:<12.3f}")
+            if depth >= 3:
+                high_depth_below.append(pct_035)
+        print("-" * 100)
+        overall_high_depth = np.mean(high_depth_below) if high_depth_below else 0
+        print(f"Overall % D < 0.35 for depth ≥ 3: {overall_high_depth:.1f}%")
+        if overall_high_depth > 75:
+            print("STRONG EVIDENCE: Hypothesis supported (deep branching drives low D)")
+        elif overall_high_depth > 50:
+            print("MODERATE EVIDENCE: Hypothesis partially supported")
+        else:
+            print("WEAK EVIDENCE: Hypothesis not strongly supported")
+            print("OPPOSING SUB-HYPOTHESIS WINS: Higher branching does not lower dimension significantly")
+
+        if not brute_force:
+            pause()
+            break
+
+        # Brute-force next cycle
+        print("\nCycle {} complete. Next cycle starts in 10 seconds... (Ctrl+C to stop)".format(cycle))
+        try:
+            for i in range(10, 0, -1):
+                print(f"{i} ", end="", flush=True)
+                time.sleep(1)
+            print("\nStarting next cycle...")
+        except KeyboardInterrupt:
+            print("\nInterrupted! Exiting brute-force.")
+            pause()
+            break
+
+        # Mutate params
+        N = int(N * 1.1)
+        grid_size = int(grid_size * 1.2)
+        realizations = min(realizations + 5, 50)
+        epsilon_start *= 0.95
+
+# ============================================================
+# SECTOR 19 — Hybrid Synergy Probe (v2.1 - Crash-Fixed)
+# ============================================================
+def sector_19_hybrid_synergy_probe(realizations=20, steps=12, N=50, epsilon_start=0.1, grid_size=3000):
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import time
+
+    print("\n" + "="*70)
+    print(" SECTOR 19 — Hybrid Synergy Probe (RN + Curved + Branching) - v2.1 Crash-Fixed")
+    print("="*70)
+
+    families = ['straight', 'curved', 'branching', 'hybrid']
+
+    decay_factor = 0.75
+    min_epsilon = 0.01
+    curve_points = 25
+
+    # Brute-force toggle
+    mode_input = input("Run mode [1] Single [2] Brute-force: ").strip()
+    brute_force = mode_input == '2'
+
+    cycle = 0
+    while True:
+        cycle += 1
+        print(f"\n=== Cycle {cycle} (N={N}, grid={grid_size}, realizations={realizations}, ε_start={epsilon_start}) ===")
+
+        # Recompute RN bias for current N (fixes size mismatch)
+        rn_weights = np.array([rn(i) for i in range(1, N+1)])
+        rn_probs = rn_weights / rn_weights.sum()
+
+        results = {f: [] for f in families}
+        trajectories = {f: [] for f in families}
+
+        max_grid = max(grid_size, int(1/epsilon_start) * 200)
+        grid = np.random.uniform(-1, 1, (max_grid, 3))
+
+        for r in range(realizations):
+            print(f"  Realization {r+1}/{realizations} started", end=" ... ")
+
+            epsilon = epsilon_start
+            eps_traj = []
+            Ds = {f: [] for f in families}
+
+            for step in range(steps):
+                eps_traj.append(epsilon)
+
+                indices = np.random.choice(np.arange(N), size=N, p=rn_probs)
+                directions = np.random.normal(size=(N, 3))[indices]
+                directions /= np.linalg.norm(directions, axis=1)[:, None] + 1e-10
+
+                for family in families:
+                    K_field = np.zeros(len(grid))
+
+                    for v in directions:
+                        if family == 'straight':
+                            curve = np.array([t * v for t in np.linspace(0, 1, curve_points)])
+                        elif family == 'curved':
+                            curve = random_curve(v, curvature=1.5)
+                        elif family == 'branching':
+                            branches = generate_branch(v, depth=3)
+                            curve = np.vstack(branches) if branches else np.array([t * v for t in np.linspace(0, 1, curve_points)])
+                        elif family == 'hybrid':
+                            spine = random_curve(v, curvature=1.5)
+                            full_structure = [spine]
+                            branch_points = [int(i) for i in np.linspace(5, len(spine)-5, 3)]
+                            for i in branch_points:
+                                pos = spine[i]
+                                local_dir = spine[i] - spine[max(0, i-1)]
+                                local_dir /= np.linalg.norm(local_dir) + 1e-10
+                                branches = generate_branch(local_dir, depth=2)[:10]  # cap
+                                full_structure.extend([b + pos for b in branches])
+                            curve = np.vstack(full_structure)
+
+                        diff = grid[:, None, :] - curve[None, :, :]
+                        d2 = np.sum(diff * diff, axis=2)
+                        mind2 = np.min(d2, axis=1)
+                        K_field += (mind2 <= epsilon**2)
+
+                    total = np.sum(K_field)
+                    if total > 0:
+                        p = K_field / total
+                        p = p[p > 0]
+                        H = -np.sum(p * np.log(p))
+                        denom = np.log(1/epsilon) + 1e-12
+                        D = max(0, H / denom)
+                    else:
+                        D = 0.0
+
+                    Ds[family].append(D)
+
+                epsilon = max(epsilon * decay_factor, min_epsilon)
+
+            for f in families:
+                results[f].append(Ds[f][-1])
+                trajectories[f].append(Ds[f])
+
+            print("done")
+
+        # Plot & summary (same as before)
+        plt.figure(figsize=(10, 6))
+        for f in families:
+            traj = np.mean(trajectories[f], axis=0)
+            plt.plot(eps_traj, traj, marker='o', label=f)
+
+        plt.gca().invert_xaxis()
+        plt.xlabel("ε")
+        plt.ylabel("D")
+        plt.title("Hybrid Synergy vs Baselines")
+        plt.grid(True)
+        plt.legend()
+        plt.show()
+
+        print("\nHybrid Synergy Summary")
+        print("-"*90)
+        print(f"{'Family':<12} {'Mean D':<10} {'Std D':<10} {'% D < 0.35':<10}")
+        print("-"*90)
+
+        best_single = float('inf')
+        for f in families:
+            arr = np.array(results[f])
+            mean_d = arr.mean()
+            std_d = arr.std()
+            pct_low = np.mean(arr < 0.35)*100
+            print(f"{f:<12} {mean_d:<10.4f} {std_d:<10.4f} {pct_low:<10.1f}")
+            if f != 'hybrid' and mean_d < best_single:
+                best_single = mean_d
+
+        print("-"*90)
+
+        hybrid_mean = np.mean(results['hybrid'])
+        delta = hybrid_mean - best_single
+        if delta < -0.05:
+            print("STRONG EVIDENCE: Hybrid beats best single mechanism")
+        elif delta < -0.02:
+            print("MODERATE EVIDENCE: Hybrid partially better")
+        else:
+            print("WEAK EVIDENCE: No clear synergy")
+            print("OPPOSING SUB-HYPOTHESIS WINS: Hybrid does not outperform individual mechanisms")
+
+        if not brute_force:
+            pause()
+            break
+
+        print("\nCycle complete. Next in 10s (Ctrl+C to exit)...")
+        time.sleep(10)
+        N = int(N * 1.1)
+        grid_size = int(grid_size * 1.2)
+        realizations = min(realizations + 5, 50)
+        epsilon_start *= 0.95
+
+# ============================================================
+# SECTOR 20 — Adaptive Coverage Avoidance System (v2.1 - Final Polished)
+# ============================================================
+def sector_20_adaptive_coverage_avoidance(realizations=20, steps=12, N_candidates=50, N_selected=10, epsilon_start=0.05, grid_size=50000):
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import time
+
+    print("\n" + "="*70)
+    print(" SECTOR 20 — Adaptive Coverage Avoidance System - v2.1 Final")
+    print("="*70)
+
+    # Hypothesis & opposing sub
+    print("\n" + "-"*80)
+    print("HYPOTHESIS UNDER TEST (Adaptive Avoidance):")
+    print("Adaptive tubes that minimize overlap with existing coverage produce")
+    print("lower D than random placement, suggesting self-organizing systems")
+    print("approximate efficient Kakeya packings.")
+    print("\nOPPOSING SUB-HYPOTHESIS:")
+    print("If adaptive D is not significantly lower than random placement,")
+    print("then overlap avoidance does not improve packing efficiency in finite approximations.")
+    print("-"*80 + "\n")
+
+    decay_factor = 0.75
+    min_epsilon = 0.01
+
+    final_D_adaptive = []
+    final_D_random = []
+
+    plt.figure(figsize=(12, 8))
+    plt.suptitle("Adaptive vs Random Placement Comparison")
+
+    for r in range(realizations):
+        print(f"  Realization {r+1}/{realizations}", end=" ... ")
+
+        # Fixed grid per realization
+        max_grid = max(grid_size, int(1/epsilon_start) * 200)
+        grid = np.random.uniform(-1, 1, (max_grid, 3))
+
+        # ----------------------------------------------------
+        # Random baseline — accumulates coverage
+        # ----------------------------------------------------
+        epsilon = epsilon_start
+        Ds_random = []
+        coverage_random = np.zeros(len(grid))
+        for step in range(steps):
+            directions = np.random.normal(size=(N_selected, 3))
+            directions /= np.linalg.norm(directions, axis=1)[:, None]
+            K = np.zeros(len(grid))
+            for v in directions:
+                curve = random_curve(v, curvature=1.5)
+                diff = grid[:, None, :] - curve[None, :, :]
+                d2 = np.sum(diff * diff, axis=2)
+                mind2 = np.min(d2, axis=1)
+                K += (mind2 <= epsilon**2)
+            coverage_random += K
+            total = np.sum(coverage_random)
+            if total > 0:
+                p = coverage_random / total
+                p_nonzero = p[p > 0]
+                H = -np.sum(p_nonzero * np.log(p_nonzero))
+                denom = np.log(1/epsilon) + 1e-12
+                D = max(0, H / denom)
+            else:
+                D = 0.0
+            Ds_random.append(D)
+            epsilon = max(epsilon * decay_factor, min_epsilon)
+
+        final_D_random.append(Ds_random[-1])
+
+        # ----------------------------------------------------
+        # Adaptive run — true sequential greedy
+        # ----------------------------------------------------
+        epsilon = epsilon_start
+        Ds_adaptive = []
+        coverage = np.zeros(len(grid))
+
+        for step in range(steps):
+            print(f"    Step {step+1}/{steps} ε={epsilon:.4f}", end="\r")
+            for _ in range(N_selected):
+                best_overlap = float('inf')
+                best_K_add = None
+
+                for _ in range(N_candidates):
+                    v = np.random.normal(size=3)
+                    v /= np.linalg.norm(v)
+                    candidate_curve = random_curve(v, curvature=1.5)
+                    diff = grid[:, None, :] - candidate_curve[None, :, :]
+                    d2 = np.sum(diff * diff, axis=2)
+                    mind2 = np.min(d2, axis=1)
+                    candidate_K = (mind2 <= epsilon**2).astype(float)
+
+                    overlap = np.sum(candidate_K * coverage)
+                    if overlap < best_overlap:
+                        best_overlap = overlap
+                        best_K_add = candidate_K
+
+                if best_K_add is not None:
+                    coverage += best_K_add
+
+            total = np.sum(coverage)
+            if total > 0:
+                p = coverage / total
+                p_nonzero = p[p > 0]
+                H = -np.sum(p_nonzero * np.log(p_nonzero))
+                denom = np.log(1/epsilon) + 1e-12
+                D = max(0, H / denom)
+            else:
+                D = 0.0
+
+            Ds_adaptive.append(D)
+            epsilon = max(epsilon * decay_factor, min_epsilon)
+
+        final_D_adaptive.append(Ds_adaptive[-1])
+
+        delta_r = Ds_random[-1] - Ds_adaptive[-1]
+        print(f"adaptive D = {Ds_adaptive[-1]:.4f}, random D = {Ds_random[-1]:.4f}, ΔD = {delta_r:.4f}")
+
+    # Summary & plot
+    mean_adaptive = np.mean(final_D_adaptive)
+    mean_random = np.mean(final_D_random)
+    delta = mean_random - mean_adaptive
+    pct_adaptive_lower = np.mean(np.array(final_D_adaptive) < np.array(final_D_random)) * 100
+    pct_low_adaptive = np.mean(np.array(final_D_adaptive) < 0.35) * 100
+    pct_low_random = np.mean(np.array(final_D_random) < 0.35) * 100
+    noise_floor = (np.std(final_D_adaptive) + np.std(final_D_random)) / 2
+
+    print("\nAdaptive vs Random Summary")
+    print("-" * 100)
+    print(f"Mean D (Adaptive): {mean_adaptive:.4f}")
+    print(f"Mean D (Random):   {mean_random:.4f}")
+    print(f"ΔD (Random - Adaptive): {delta:.4f}")
+    print(f"Noise floor ≈ {noise_floor:.4f}")
+    print(f"% runs Adaptive lower: {pct_adaptive_lower:.1f}%")
+    print(f"% D < 0.35 (Adaptive): {pct_low_adaptive:.1f}%")
+    print(f"% D < 0.35 (Random):   {pct_low_random:.1f}%")
+    print("-" * 100)
+
+    if abs(delta) < noise_floor:
+        print("ΔD within noise floor — difference statistically insignificant")
+        print("WEAK EVIDENCE: Adaptive and random are indistinguishable in this regime")
+    elif delta > 0.10 and pct_adaptive_lower > 70:
+        print("STRONG EVIDENCE: Adaptive placement reduces D significantly")
+    elif delta > 0.05:
+        print("MODERATE EVIDENCE: Adaptive placement partially reduces D")
+    else:
+        print("WEAK EVIDENCE: No significant advantage from adaptive placement")
+        print("OPPOSING SUB-HYPOTHESIS WINS: Overlap avoidance does not improve packing")
+
+    print("\nINTERPRETATION: In this regime, greedy overlap-avoidance tends to increase D,")
+    print("suggesting that 'even coverage' is entropically expensive and not Kakeya-efficient.")
+
+    pause()
+
+
+# ============================================================
+# SECTOR 21 — Directional Coverage Balancer (v1.1 - Final)
+# ============================================================
+def sector_21_directional_coverage_balancer(realizations=20, steps=12, N_candidates=50, N_selected=10, epsilon_start=0.05, grid_size=50000):
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import time
+
+    print("\n" + "="*70)
+    print(" SECTOR 21 — Directional Coverage Balancer (v1.1 - Final)")
+    print("="*70)
+
+    # Hypothesis & opposing sub
+    print("\n" + "-"*80)
+    print("HYPOTHESIS UNDER TEST (Directional Coverage):")
+    print("Optimizing for even directional distribution on the sphere (max min angular separation)")
+    print("produces lower mean D than random placement,")
+    print("suggesting direction uniformity is key to efficient Kakeya-like packings.")
+    print("\nOPPOSING SUB-HYPOTHESIS:")
+    print("If directional balancing does not reduce D significantly,")
+    print("then direction uniformity is not the dominant factor in finite approximations.")
+    print("-"*80 + "\n")
+
+    decay_factor = 0.75
+    min_epsilon = 0.01
+
+    final_D_balanced = []
+    final_D_random = []
+    traj_balanced = []  # for plot
+    traj_random = []
+
+    plt.figure(figsize=(12, 8))
+    plt.suptitle("Directional Balancer vs Random Placement")
+
+    for r in range(realizations):
+        print(f"  Realization {r+1}/{realizations}", end=" ... ")
+
+        # Fixed grid per realization
+        max_grid = max(grid_size, int(1/epsilon_start) * 200)
+        grid = np.random.uniform(-1, 1, (max_grid, 3))
+
+        # Track used directions (unit vectors)
+        used_dirs = []
+
+        # ----------------------------------------------------
+        # Random baseline — accumulates coverage
+        # ----------------------------------------------------
+        epsilon = epsilon_start
+        Ds_random = []
+        coverage_random = np.zeros(len(grid))
+        for step in range(steps):
+            directions = np.random.normal(size=(N_selected, 3))
+            directions /= np.linalg.norm(directions, axis=1)[:, None] + 1e-10
+            K = np.zeros(len(grid))
+            for v in directions:
+                curve = random_curve(v, curvature=1.5)
+                diff = grid[:, None, :] - curve[None, :, :]
+                d2 = np.sum(diff * diff, axis=2)
+                mind2 = np.min(d2, axis=1)
+                K += (mind2 <= epsilon**2)
+            coverage_random += K
+            total = np.sum(coverage_random)
+            if total > 0:
+                p = coverage_random / total
+                p_nonzero = p[p > 0]
+                H = -np.sum(p_nonzero * np.log(p_nonzero))
+                denom = np.log(1/epsilon) + 1e-12
+                D = max(0, H / denom)
+            else:
+                D = 0.0
+            Ds_random.append(D)
+            epsilon = max(epsilon * decay_factor, min_epsilon)
+        final_D_random.append(Ds_random[-1])
+        traj_random.append(Ds_random)
+
+        # ----------------------------------------------------
+        # Balanced run — maximize min angular separation
+        # ----------------------------------------------------
+        epsilon = epsilon_start
+        Ds_balanced = []
+        coverage = np.zeros(len(grid))
+        used_dirs = []
+
+        for step in range(steps):
+            print(f"    Step {step+1}/{steps} ε={epsilon:.4f}", end="\r")
+            for _ in range(N_selected):
+                best_score = -float('inf')
+                best_v = None
+                best_K_add = None
+
+                for _ in range(N_candidates):
+                    v = np.random.normal(size=3)
+                    v /= np.linalg.norm(v) + 1e-10
+
+                    # Score = min angular distance to existing directions
+                    if len(used_dirs) == 0:
+                        score = float('inf')
+                    else:
+                        cosines = np.dot(np.array(used_dirs), v)
+                        min_cos = np.max(cosines)
+                        min_angle = np.arccos(np.clip(min_cos, -1, 1))
+                        score = min_angle  # higher = better spread
+
+                    if score > best_score:
+                        best_score = score
+                        best_v = v
+
+                        curve = random_curve(best_v, curvature=1.5)
+                        diff = grid[:, None, :] - curve[None, :, :]
+                        d2 = np.sum(diff * diff, axis=2)
+                        mind2 = np.min(d2, axis=1)
+                        best_K_add = (mind2 <= epsilon**2).astype(float)
+
+                if best_K_add is not None:
+                    coverage += best_K_add
+                    used_dirs.append(best_v)
+
+            total = np.sum(coverage)
+            if total > 0:
+                p = coverage / total
+                p_nonzero = p[p > 0]
+                H = -np.sum(p_nonzero * np.log(p_nonzero))
+                denom = np.log(1/epsilon) + 1e-12
+                D = max(0, H / denom)
+            else:
+                D = 0.0
+
+            Ds_balanced.append(D)
+            epsilon = max(epsilon * decay_factor, min_epsilon)
+
+        final_D_balanced.append(Ds_balanced[-1])
+        traj_balanced.append(Ds_balanced)
+
+        delta_r = Ds_random[-1] - Ds_balanced[-1]
+        print(f"balanced D = {Ds_balanced[-1]:.4f}, random D = {Ds_random[-1]:.4f}, ΔD = {delta_r:.4f}")
+
+    # Summary & plot
+    mean_balanced = np.mean(final_D_balanced)
+    mean_random = np.mean(final_D_random)
+    delta = mean_random - mean_balanced
+    pct_balanced_lower = np.mean(np.array(final_D_balanced) < np.array(final_D_random)) * 100
+    pct_low_balanced = np.mean(np.array(final_D_balanced) < 0.35) * 100
+    pct_low_random = np.mean(np.array(final_D_random) < 0.35) * 100
+    noise_floor = (np.std(final_D_balanced) + np.std(final_D_random)) / 2
+
+    print("\nDirectional Balancer vs Random Summary")
+    print("-" * 100)
+    print(f"Mean D (Balanced): {mean_balanced:.4f}")
+    print(f"Mean D (Random):   {mean_random:.4f}")
+    print(f"ΔD (Random - Balanced): {delta:.4f}")
+    print(f"Noise floor ≈ {noise_floor:.4f}")
+    print(f"% runs Balanced lower: {pct_balanced_lower:.1f}%")
+    print(f"% D < 0.35 (Balanced): {pct_low_balanced:.1f}%")
+    print(f"% D < 0.35 (Random):   {pct_low_random:.1f}%")
+    print("-" * 100)
+
+    if abs(delta) < noise_floor:
+        print("ΔD within noise floor — difference statistically insignificant")
+    elif delta > 0.10 and pct_balanced_lower > 70:
+        print("STRONG EVIDENCE: Directional balancing reduces D significantly")
+    elif delta > 0.05:
+        print("MODERATE EVIDENCE: Directional balancing partially reduces D")
+    else:
+        print("WEAK EVIDENCE: No significant advantage from directional balancing")
+        print("OPPOSING SUB-HYPOTHESIS WINS: Direction uniformity does not improve packing")
+
+    print("\nINTERPRETATION: If directional balancing lowers D, it suggests even sphere coverage is key to Kakeya efficiency.")
+    print("If not, directional distribution may be secondary to spatial structure in finite approximations.")
+
+    # Trajectory plot
+    plt.figure(figsize=(10, 6))
+    plt.plot(range(steps), np.mean(traj_random, axis=0), 'b--', label='Random')
+    plt.plot(range(steps), np.mean(traj_balanced, axis=0), 'r-', label='Balanced')
+    plt.xlabel("Step")
+    plt.ylabel("D")
+    plt.title("Trajectory Comparison")
+    plt.grid(True)
+    plt.legend()
+    plt.show()
+
+    pause()
+
+# ============================================================
+# SECTOR 22 — SAVE FULL TERMINAL LOG
+# ============================================================
+def sector_22_save_log():
+    import os, datetime
+
+    print("\n" + "="*70)
+    print(" SECTOR 22 — Save Full Terminal Log")
+    print("="*70)
+
+    if not SESSION_LOG:
+        print("No logged output yet — session is empty.")
+        pause()
+        return
+
+    log_dir = "kncf_logs"
+    os.makedirs(log_dir, exist_ok=True)
+
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    filename = f"KNCF_log_{timestamp}.txt"
+    filepath = os.path.join(log_dir, filename)
+
+    try:
+        with open(filepath, "w", encoding="utf-8") as f:
+            for line in SESSION_LOG:
+                f.write(line + "\n")
+
+        print(f"Log successfully saved to: {filepath}")
+        print(f"Total lines saved: {len(SESSION_LOG)}")
+
+    except Exception as e:
+        print(f"Error saving log: {e}")
+        print("Check folder permissions or disk space.")
+
+    pause()
+
+
+
+# ============================================================
+# MAIN MENU 
+# ============================================================
+def main_menu():
+    banner()
+
+    while True:
+        print("\nSelect a Sector to Run:")
+        print("  [1]  KNCF Master Equation Set")
+        print("  [2]  Straight Tube Simulation (Baseline)")
+        print("  [3]  RN Weighting Demo")
+        print("  [4]  BTLIAD Evolution Demo")
+        print("  [5]  SBHFF Stability Demo")
+        print("  [6]  Polygonal Tube Simulation")
+        print("  [7]  Curved Tube Simulation")
+        print("  [8]  Branching Tube Simulation")
+        print("  [9]  Entropy & Dimension Scan")
+        print("  [10] Full KNCF State Evolution")
+        print("  [11] Full KNCF State BTLIAD Evolution")
+        print("  [12] Full Full KNCF Full State Full BTLIAD Full Evolution")
+        print("  [13] RN-Biased Multi-Family Run")
+        print("  [14] Curvature & Branching Parameter Sweep")
+        print("  [15] Echo-Residue Multi-Family Stability Crown")
+        print("  [16] @@@ High-Curvature Collapse Probe")
+        print("  [17] RN Bias Reduction Sweep")
+        print("  [18] Branching Depth Hammer Test")
+        print("  [19] Hybrid Synergy Probe (RN + Curved + Branching)")
+        print("  [20] Adaptive Coverage Avoidance System")
+        print("  [21] Sector 21 - Directional Coverage Balancer")
+        print("  [22] Save Full Terminal Log - manual saves required")
+        print("  [0]  Exit")
+        print("-" * 60)
+
+        choice = input("Enter choice: ").strip()
+
+        # ----------------------------------------------------
+        # BASIC SECTORS
+        # ----------------------------------------------------
+        if choice == "1":
+            sector_1_master_equations()
+
+        elif choice == "2":
+            sector_2_straight_tubes()
+
+        elif choice == "3":
+            sector_3_rn_demo()
+
+        elif choice == "4":
+            sector_4_btliad_demo()
+
+        elif choice == "5":
+            sector_5_sbhff_demo()
+
+        elif choice == "6":
+            sector_6_polygonal_tubes()
+
+        elif choice == "7":
+            sector_7_curved_tubes()
+
+        elif choice == "8":
+            sector_8_branching_tubes()
+
+        elif choice == "9":
+            sector_9_entropy_scan()
+
+        elif choice == "22":
+            sector_22_save_log()
+
+        # ----------------------------------------------------
+        # FULL EVOLUTION (10 & 11)
+        # ----------------------------------------------------
+        elif choice in ["10", "11"]:
+            tube_options = ['straight', 'polygonal', 'curved', 'branching']
+            print("\nSelect Tube Type:")
+            print("Options:", ", ".join(tube_options))
+
+            tube_type = input("Enter tube type (default='straight'): ").strip().lower()
+            if tube_type not in tube_options:
+                print("Invalid or blank. Using default: 'straight'")
+                tube_type = 'straight'
+
+            steps_input = input("Enter number of steps (default=10): ").strip()
+            steps = int(steps_input) if steps_input.isdigit() else 10
+
+            N_input = input("Enter number of directions N (default=50): ").strip()
+            N = int(N_input) if N_input.isdigit() else 50
+
+            epsilon_input = input("Enter starting ε (default=0.1): ").strip()
+            try:
+                epsilon_start = float(epsilon_input)
+            except:
+                epsilon_start = 0.1
+
+            grid_input = input("Enter grid size (default=3000): ").strip()
+            grid_size = int(grid_input) if grid_input.isdigit() else 3000
+
+            if choice == "10":
+                sector_10_full_evolution(
+                    tube_type=tube_type,
+                    steps=steps,
+                    N=N,
+                    epsilon_start=epsilon_start,
+                    grid_size=grid_size
+                )
+            else:
+                sector_11_full_evolution(
+                    tube_type=tube_type,
+                    steps=steps,
+                    N=N,
+                    epsilon_start=epsilon_start,
+                    grid_size=grid_size
+                )
+
+        # ----------------------------------------------------
+        # ADVANCED MULTI-RUN SECTORS (12–20)
+        # ----------------------------------------------------
+        elif choice in ["12", "13", "14", "15", "16", "17", "18", "19", "20", "21"]:
+
+            steps_input = input("Enter number of steps (default=10): ").strip()
+            steps = int(steps_input) if steps_input.isdigit() else 10
+
+            N_input = input("Enter number of directions N (default=50): ").strip()
+            N = int(N_input) if N_input.isdigit() else 50
+
+            epsilon_input = input("Enter starting ε (default=0.1): ").strip()
+            try:
+                epsilon_start = float(epsilon_input)
+            except:
+                epsilon_start = 0.1
+
+            grid_input = input("Enter grid size (default=3000): ").strip()
+            grid_size = int(grid_input) if grid_input.isdigit() else 3000
+
+            if choice == "12":
+                sector_12_full_full_evolution(
+                    steps=steps,
+                    N=N,
+                    epsilon_start=epsilon_start,
+                    grid_size=grid_size
+                )
+
+            elif choice == "13":
+                sector_13_rn_biased_multi_family(
+                    steps=steps,
+                    N=N,
+                    epsilon_start=epsilon_start,
+                    grid_size=grid_size
+                )
+
+            elif choice == "14":
+                sector_14_param_sweep(
+                    steps=steps,
+                    N=N,
+                    epsilon_start=epsilon_start,
+                    grid_size=grid_size
+                )
+
+            elif choice == "15":
+                sector_15_echo_stability(
+                    steps=steps,
+                    N=N,
+                    epsilon_start=epsilon_start,
+                    grid_size=grid_size
+                )
+
+            elif choice == "16":
+                sector_16_high_curvature_collapse(
+                    realizations=20,
+                    steps=steps,
+                    N=N,
+                    epsilon_start=epsilon_start,
+                    grid_size=grid_size
+                )
+
+            elif choice == "17":
+                sector_17_rn_bias_reduction(
+                    realizations=20,
+                    steps=steps,
+                    N=N,
+                    epsilon_start=epsilon_start,
+                    grid_size=grid_size
+                )
+
+            elif choice == "18":
+                sector_18_branching_depth_hammer(
+                    realizations=20,
+                    steps=steps,
+                    N=N,
+                    epsilon_start=epsilon_start,
+                    grid_size=grid_size
+                )
+
+            elif choice == "19":
+                sector_19_hybrid_synergy_probe(
+                    realizations=20,
+                    steps=steps,
+                    N=N,
+                    epsilon_start=epsilon_start,
+                    grid_size=grid_size
+                )
+
+            elif choice == "20":
+                sector_20_adaptive_coverage_avoidance(
+                    realizations=20,
+                    steps=steps,
+                    N_candidates=50,   # candidates to try per step
+                    N_selected=10,     # how many to actually place per step
+                    epsilon_start=epsilon_start,
+                    grid_size=grid_size
+                )
+            elif choice == "21":
+                sector_21_directional_coverage_balancer(
+                    realizations=20,
+                    steps=steps,
+                    N_candidates=50,   # candidates to try per step
+                    N_selected=10,     # how many to actually place per step
+                    epsilon_start=epsilon_start,
+                    grid_size=grid_size
+                )
+
+        # ----------------------------------------------------
+        # EXIT
+        # ----------------------------------------------------
+        elif choice == "0":
+            print("\nExiting KNCF Suite. The geometry persists.\n")
+            sys.exit(0)
+
+        else:
+            print("Invalid choice. Try again.")
+
+if __name__ == "__main__":
+    main_menu()
+
+# LICENSE.TXT
+# 0ko3maibZer00logyLicensev1.19310
+# Zer00logy License v1.19310
+# March 10, 2026
+#
+#This project is open source,
+#embodying the principles of free will and perpetual continuity for Zer00logy / Zero-Ology.
+#
+#It grants a worldwide, royalty-free, perpetual license to use, copy, modify,
+#distribute, and build upon all content—including theory, terminology,
+#structure, code fragments, and .txt files—for any purpose, including commercial use.
+#
+#All content remains protected under an authorship-trace lock,
+#with the conceptual foundation credited to Stacey Szmy.
+#
+#Included Files:
+#- Variamathlesson.txt
+#- zecstart.txt
+#- zectxt.txt
+#- VoidMathOS_cryptsheet.txt
+#- VAIRA_addendum.txt
+#- confusious&how_to_cut_a_cake.txt
+#- NSRHFsuite0020V.py
+#- RHFsuite0020V.py
+#- RRHLFon0022V.py
+#- SBHFFsuite0020V.py
+#- VoidMathOS_lesson.py
+#- zer00logy_coreV04450.py
+#- zer00logy_coreV04452.py
+#- zer00logy_coreV04455.py
+#- zer00logy_coreV04456.py
+#- zer00logy_coreV04459.py
+#- zer00logy_coreV04461.py
+#- zer00logy_coreV04469.py
+#- README.md
+#- README_0KO3MAIB.txt
+#- LICENSE.txt
+#- 0ko3maibZer00logyLicensev01.txt
+#- rainbowquest1000.py
+#- GroupChatForge.py
+#- dispatchai_forge.py
+#- szmy_truths.txt
+#- szmy_truths.py
+#- Zero_Freeze_Hamiltonian_Lattice_Gauge_Benchmark_Suite.py
+#- Zero_Freeze_Hamiltonian_Lattice_Gauge_Benchmark_Suite0033.py
+#- Zero_Freeze_Yang--Mills_Formula.txt
+#- Zero_Freeze_Yang--Mills_Formula_Numerical_and_Computational_Study_(latax_v2_2).txt
+#- Zero_Freeze_Yang--Mills_Formula_Numerical_and_Computational_Study_(Plaintext_v2_2).docx
+#- grand_summary_20251102_114655_Real_SU(3)_operator.JSON
+#- grand_summary_20251102_114655_Real_SU(3)_operator.CSV
+#- grand_summary_20251102_114247_placeholder.JSON
+#- grand_summary_20251102_114247_placeholder.CSV
+#- Lie_π_Infinity_lesson.txt
+#- THE_WHY_EQUATION.py
+#- Study_The_Repeating_Digit_Weights_(RN)_Formula.txt
+#- Repeating_Digit_Weights_(RN).py
+#- Szmy_Collatz.py
+#- OddPerfectTerminator_GODD.py
+#- OddPerfectTerminator_Log_OG123456.zip
+#- Szmy_Grok_Odd_Perfect_Proof_Nov10_2025.pdf
+#- APLHA_INFIN_P_MATRIX.py
+#- alpha.txt
+#- alphabet_Infinity_Pool_Matrix.pdf
+#- AlphaLOG.zip
+#- KOPPA_GRAND_CONSTANT.PY
+#- The_Koppa_Grand_Constant.docx
+#- The_Koppa_Grand_Constant.txt
+#- KOPPA_HETA_DIGAMMA.PY
+#- KOPPA_HETA_DIGAMMA.docx
+#- KOPPA_HETA_DIGAMMA.txt
+#- GRAND_CONSTANT_ALGEBRA.PY
+#- Grand_Constant_Algebra_Framework.docx
+#- Grand_Constant_Algebra.txt
+#- equal.PY
+#- equal.txt
+#- equalequal.PY
+#- equalequal.txt
+#- hodge_GCA.PY
+#- hodge_GCA.txt
+#- hodge_GCA.docx
+#- log_hodge.zip
+#- fairness_arithmetic_suite.py
+#- Fairness_Arithmetic.txt
+#- pap_suite.py
+#- pap.txt
+#- PAP.docx
+#- PLAE.txt
+#- PLAE_suit.py
+#- PLAE.txt
+#- PLAE_log.zip
+#- log_pap.zip
+#- daa_suite.py
+#- DAA.txt
+#- log_daa.zip
+#- Domain_Attribute_Adjudicator.docx
+#- ZRRF_suite.py
+#- ZRRF_suite_log030826.txt
+#- zenith.txt
+#- Kakeya_Nirvana_Conjecture_Framework.txt
+#- KNCF_Suite.py
+#- KNCF_log_31026.txt
+#──────────────────────────────
+#Permissions
+#──────────────────────────────
+#Use and Distribution:
+#- Freely use, copy, modify, and distribute this software and its content in source or compiled form.
+#- Commercial applications permitted, provided attribution rules (see below) are followed.
+#
+#──────────────────────────────
+#Restrictions
+#──────────────────────────────
+#Attribution Propagation:
+#All derived works must include:
+#1. The original copyright:
+#   "© Stacey8Szmy — Zero-Ology IP Archive." Or "© Stacey8Szmy — Zer00logy IP Archive."
+#2. A statement that the work is derived from the Zer00logy framework or Zero-Ology framework, referencing this license and repository:
+#   https://github.com/haha8888haha8888/Zero-ology
+#or
+#   https://github.com/haha8888haha8888/Zer00logy
+#
+#3. Credit to Stacey Szmy as primary author of the foundational concepts.
+#
+#No Removal of License:
+#- This license must remain attached to all redistributions.
+#
+#──────────────────────────────
+#Co-Author AI Systems
+#──────────────────────────────
+#- OpenAI ChatGPT
+#- Grok (xAI)
+#- Microsoft Copilot
+#- Google Gemini
+#- Meta LLaMA
+#
+#──────────────────────────────
+#Endless Life Commitment
+#──────────────────────────────
+#All symbolic rights reserved.  
+#SZMY ensures the continuity of Zer00logy / Zero-Ology’s ideas while granting free will to adapt them.
+#
+#─────────────────────────────
+#© Stacey8Szmy
+
+#© Stacey8Szmy — Zer00logy IP Archive
+
+*{newFileChapterAddIndex}* 
+#Kakeya_Nirvana_Conjecture_Framework.txt
+
+=====================================================================
+Kakeya Nirvana Conjecture Framework (KNCF v1.0)
+Computational Observatory for Exotic Kakeya Geometries
+Zero-Ology Research Initiative
+
+Author: Stacey Szmy
+Co-Authors: Google Gemini Ai x Microsoft Copilot Ai x OpenAI ChatGPT x Grok Xai
+Date: March 2026
+=====================================================================
+
+I. CORE RESEARCH VISION
+---------------------------------------------------------------------
+The Kakeya Nirvana Conjecture Framework (KNCF) is a computational research program 
+designed to explore the geometric and dimensional behavior of generalized Kakeya tube families.
+
+Rather than restricting to classical straight line segments, KNCF investigates extended tube families including:
+
+- Straight tubes (classical Kakeya)
+- Polygonal cross-section tubes
+- Curved tubes with bounded curvature
+- Branching tubes
+- Hybrid tube networks
+
+The framework does not attempt a direct proof of the Kakeya conjecture, but instead constructs a computational laboratory to study:
+
+- Overlap structure
+- Entropy distribution
+- Dimension proxies
+- Dynamical stability
+
+KNCF is classified as: Category B — Computational Kakeya Research Laboratory.
+
+=====================================================================
+II. THE COMPUTATIONAL KAKYA LAB (KCL)
+---------------------------------------------------------------------
+The KCL is the experimental engine of KNCF. It simulates tube families and measures emergent geometric statistics. 
+
+Each experiment generates a Kakeya State Sequence:
+
+S_n = (ε_n, E_n, H_n, λ_n, ρ_n(v))
+
+Where:
+
+ε_n — Tube thickness (limit parameter approaching zero)
+
+E_n — Overlap Energy
+E_n = Σ_x K_ε(x)^2
+Measures intensity of tube overlaps.
+
+H_n — Entropy
+H_n = -Σ_x p(x) log p(x),   p(x) = K_ε(x)/Σ K_ε(x)
+Measures spatial distribution of tube density.
+
+λ_n — Stability (SBHFF Lyapunov)
+Derived from SBHFF recursion; indicates whether the configuration is stable, chaotic, or collapsing.
+
+ρ_n(v) — Directional density
+Directional sampling distribution generated via RN weighting.
+
+=====================================================================
+III. TUBE FAMILIES STUDIED
+---------------------------------------------------------------------
+
+1. Straight Tubes (Baseline)
+T_ε(v) = { x ∈ ℝ^3 : dist(x, ℓ_v) ≤ ε }, ℓ_v = { x_0 + t v : 0 ≤ t ≤ 1 }
+These serve as control experiments.
+
+2. Polygonal Tubes
+Cross-section defined by convex polygon.
+||x||_C = max_i(a_i ⋅ x)
+Used to study cross-section anisotropy.
+
+3. Curved Tubes
+Centerline curve γ(s) with bounded curvature ||γ''(s)|| ≤ K
+Tube: T_ε(γ) = { x : dist(x, γ) ≤ ε }
+Tests whether curvature alters dimensional behavior.
+
+4. Branching Tubes
+Centerline splits recursively: γ_v → {γ_v1, γ_v2, …, γ_vb} with branching angle θ
+Heuristic dimension model: dim(K_b) ≈ 3 - log_b(1 + sin θ)
+Purely experimental.
+
+=====================================================================
+IV. DIRECTIONAL BIAS (RN OPERATOR)
+---------------------------------------------------------------------
+Tube directions are not sampled uniformly. KNCF uses RN weighting derived from repeating digit numbers:
+
+RN_n = n * (10/9)
+ρ(v_i) = RN_i / Σ_j RN_j
+
+Purpose: test whether non-uniform direction distributions change overlap structure.
+
+=====================================================================
+V. BTLIAD EVOLUTION ENGINE
+---------------------------------------------------------------------
+Simulations evolve parameters across epochs using BTLIAD recursion:
+
+P(n) = n^2.111
+F(n) = 1.111 n
+M(n) = 3.333 n
+B(n) = 0.111 n
+E(n) = 9.999 n
+
+Evolution Rule:
+V(n) = P(n) * [ F(n-1) M(n-1) + B(n-2) E(n-2) ]
+
+Modifies parameters such as tube count, direction density, and ε scaling.
+
+=====================================================================
+VI. SBHFF STABILITY MONITOR
+---------------------------------------------------------------------
+Tracks dynamic stability of simulations:
+
+F_{n+1} = F_n + (π sin(G F_n)) / (α F_n^2 / π)
+
+Lyapunov Estimate:
+λ = (1/N) Σ log |1 + (π G cos(G F_n)) / (2 α F_n / π)|
+
+Interpretation:
+λ < 0 → stable
+λ ≈ 0 → neutral
+λ > 0 → chaotic
+
+=====================================================================
+VII. DIMENSION PROXY
+---------------------------------------------------------------------
+Since true Hausdorff dimension is difficult to compute numerically, KNCF uses an entropy-based proxy:
+
+D ≈ H_ε / log(1/ε)
+
+Tracking this as ε shrinks provides experimental dimension trends.
+
+=====================================================================
+VIII. GROK ECHO OPERATOR (Optional Diagnostic)
+---------------------------------------------------------------------
+Echo residue: Ø^0(K_ε) = sin(K_ε)/K_ε + V_void
+V_void = fraction of voxels with K_ε = 0
+Not mathematically canonical but reveals structural patterns.
+
+=====================================================================
+IX. KAKAYA CERTIFICATES
+---------------------------------------------------------------------
+Each experiment produces a Kakeya Certificate for reproducibility:
+
+Example:
+Kakeya Certificate
+Run ID: 0427
+Tube Type: Curved
+Directions: RN weighted
+Epochs: 20
+epsilon_final: 0.002
+entropy: 5.42
+energy: 9381
+dimension_estimate: 2.98
+lyapunov: -0.11
+stability: Balanced
+
+=====================================================================
+X. PYTHON IMPLEMENTATION
+---------------------------------------------------------------------
+All experiments and sectors are implemented in a single Python suite: KNCF_Suite.py.
+
+User Menu (Sector Mapping):
+
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+ [10]  Full KNCF State Evolution
+ [11]  Full KNCF State BTLIAD Evolution
+ [12]  Full Full KNCF Full State Full BTLIAD Full Evolution
+ [13]  RN-Biased Multi-Family Run
+ [14]  Curvature & Branching Parameter Sweep
+ [15]  Echo-Residue Multi-Family Stability Crown
+ [16]  High-Curvature Collapse Probe
+ [17]  RN Bias Reduction Sweep
+ [18]  Branching Depth Hammer Test
+ [19]  Hybrid Synergy Probe (RN + Curved + Branching)
+ [20]  Adaptive Coverage Avoidance System
+ [21]  Directional Coverage Balancer
+  [0]  Exit
+
+All experiments, directional bias, evolution dynamics, stability monitoring, and dimension proxy computations are **fully integrated** into this single suite. Each menu selection corresponds to a reproducible sector or combination of sectors.
+
+=====================================================================
+XI. EXPERIMENTAL ROADMAP
+---------------------------------------------------------------------
+Phase 1 — Classical Validation
+Straight tubes, uniform directions
+Goal: reproduce expected dimension ≈ 3 behavior.
+
+Phase 2 — Directional Bias
+RN weighted directions
+Goal: test overlap changes.
+
+Phase 3 — Polygonal Tubes
+Cross-section experiments
+
+Phase 4 — Curved Tubes
+Curvature bounds
+
+Phase 5 — Branching Tubes
+Recursive families
+
+Phase 6 — Hybrid & Multi-Family
+Curvature + branching + RN bias experiments
+
+=====================================================================
+XII. RESEARCH OBJECTIVE
+---------------------------------------------------------------------
+Determine whether generalized Kakeya families exhibit:
+
+- Dimension invariance
+- Dimensional collapse
+- Chaotic geometric regimes
+
+This computational exploration may reveal new structural principles in Kakeya-type sets.
+
+=====================================================================
+XIII. FINAL CLASSIFICATION
+---------------------------------------------------------------------
+Category B — Computational Kakeya Research Laboratory
+
+Not a proof attempt, but a **systematic experimental geometry program**.
+
+=====================================================================
+XIV. FINAL NAME
+---------------------------------------------------------------------
+Kakeya Nirvana Conjecture Framework (KNCF)
+Subtitle: A Computational Observatory for Exotic Kakeya Geometries
+
+=====================================================================
+
+
+=====================================================================
+KNCF MASTER EQUATION SET (v1.0)
+Core Mathematical Operators of the Kakeya Nirvana Conjecture Framework
+
+Author: Stacey Szmy
+Co-Authors: Google Gemini Ai x Microsoft Copilot Ai x OpenAI ChatGPT x Grok Xai
+Zero-Ology Research Initiative
+March 2026
+=====================================================================
+
+I. PURPOSE OF THE MASTER EQUATION SET
+---------------------------------------------------------------------
+The KNCF Master Equation Set defines the core mathematical operators that govern all simulations
+performed within the Kakeya Nirvana Conjecture Framework (KNCF).
+
+These equations provide the formal backbone for the Computational Kakeya Lab (KCL).
+
+Every simulation step, diagnostic metric, and experimental measurement arises from this finite set of operators.
+
+The master equations fall into five functional groups:
+
+1. Geometric Tube Definitions
+2. Density and Overlap Operators
+3. Information Geometry Measures
+4. Zero-Ology Evolution Operators
+5. Dynamical Stability Diagnostics
+
+Together these equations define the state evolution of Kakeya systems studied within KNCF.
+
+=====================================================================
+II. GEOMETRIC TUBE DEFINITIONS
+---------------------------------------------------------------------
+
+Equation 1 — Straight Tube Definition
+T_epsilon(v) = { x in R^3 : dist(x, l_v) <= epsilon }
+l_v = { x_0 + t v ; 0 <= t <= 1 }
+Defines the baseline tube geometry used in classical Kakeya constructions.
+
+Equation 2 — Polygonal Tube Norm
+||x||_C = max_i (a_i · x)
+T_{epsilon,C}(v) = { x : ||x - l_v||_C <= epsilon }
+Allows exploration of anisotropic tube geometries.
+
+Equation 3 — Curved Tube Definition
+T_epsilon(gamma) = { x in R^3 : dist(x, gamma(s)) <= epsilon }
+||gamma''(s)|| <= K
+Curvature bound prevents pathological bending while allowing controlled geometric curvature.
+
+Equation 4 — Branching Tube Rule
+gamma_v -> { gamma_v1, gamma_v2, ..., gamma_vb }
+dim(K_b) ≈ 3 - log_b(1 + sin(theta))
+Experimental guide for recursive branching families.
+
+=====================================================================
+III. DENSITY AND OVERLAP OPERATORS
+---------------------------------------------------------------------
+
+Equation 5 — Kakeya Density Field
+K_epsilon(x) = sum_i chi_{T_i}(x)
+chi_{T_i}(x) = 1 if x in T_i, 0 otherwise
+Counts how many tubes cover a spatial location.
+
+Equation 6 — Kakeya Set Construction
+K_epsilon = union_i T_i
+Represents the union of all tubes in the experiment.
+
+Equation 7 — Overlap Energy
+E_epsilon = sum_x K_epsilon(x)^2
+High values indicate strong tube interference; low values indicate distributed coverage.
+
+=====================================================================
+IV. INFORMATION GEOMETRY MEASURES
+---------------------------------------------------------------------
+
+Equation 8 — Probability Density
+p(x) = K_epsilon(x) / sum_x K_epsilon(x)
+Converts the tube field into a probability distribution.
+
+Equation 9 — Entropy of Tube Distribution
+H_epsilon = - sum_x p(x) log p(x)
+Measures spatial dispersion of tube overlap.
+
+Equation 10 — Dimension Proxy
+D_epsilon ≈ H_epsilon / log(1/epsilon)
+Provides a numerical approximation to Minkowski dimension as epsilon → 0.
+
+=====================================================================
+V. DIRECTIONAL BIAS OPERATORS
+---------------------------------------------------------------------
+
+Equation 11 — RN Weight Function
+RN_n = n * (10 / 9)
+Defines directional scaling weights.
+
+Equation 12 — Directional Density
+rho(v_i) = RN_i / sum_j RN_j
+Biases tube directions during simulation.
+
+=====================================================================
+VI. ZERO-OLOGY EVOLUTION OPERATORS
+---------------------------------------------------------------------
+
+Equation 13 — BTLIAD Parameter Set
+P(n) = n^2.111
+F(n) = 1.111 n
+M(n) = 3.333 n
+B(n) = 0.111 n
+E(n) = 9.999 n
+Drives scaling transformations in simulations.
+
+Equation 14 — BTLIAD Evolution Rule
+V(n) = P(n) * [ F(n-1) M(n-1) + B(n-2) E(n-2) ]
+Determines how experimental parameters evolve between epochs.
+
+=====================================================================
+VII. DYNAMICAL STABILITY DIAGNOSTICS
+---------------------------------------------------------------------
+
+Equation 15 — SBHFF Stability Map
+F_{n+1} = F_n + (pi * sin(G * F_n)) / (alpha * F_n^2 / pi)
+Lyapunov stability:
+lambda = (1/N) sum log | 1 + (pi * G * cos(G * F_n)) / (2 * alpha * F_n / pi) |
+Interpretation:
+  lambda < 0 → stable configuration
+  lambda ≈ 0 → neutral regime
+  lambda > 0 → chaotic regime
+
+=====================================================================
+VIII. SUMMARY
+---------------------------------------------------------------------
+The KNCF Master Equation Set provides fifteen core operators governing all simulations within KNCF.
+
+These equations define:
+
+- Tube geometry
+- Spatial density fields
+- Entropy and dimension proxies
+- Directional bias mechanisms
+- Recursive evolution dynamics
+- Stability diagnostics
+
+Together they form the mathematical backbone of the Computational Kakeya Lab.
+
+All software implementations within KNCF_Suite.py trace their functionality to this equation set.
+
+=====================================================================
+
+
+###########################################
+
+# LICENSE.TXT
+# Zer00logy License v1.19310
+# March 10, 2026
+
+This project is open source,
+embodying the principles of free will and perpetual continuity for Zer00logy / Zero-Ology.
+
+It grants a worldwide, royalty-free, perpetual license to use, copy, modify,
+distribute, and build upon all content—including theory, terminology,
+structure, code fragments, and .txt files—for any purpose, including commercial use.
+
+All content remains protected under an authorship-trace lock,
+with the conceptual foundation credited to Stacey Szmy.
+
+
+Included Files:
+- Variamathlesson.txt
+- zecstart.txt
+- zectxt.txt
+- VoidMathOS_cryptsheet.txt
+- VAIRA_addendum.txt
+- confusious&how_to_cut_a_cake.txt
+- NSRHFsuite0020V.py
+- RHFsuite0020V.py
+- RRHLFon0022V.py
+- SBHFFsuite0020V.py
+- VoidMathOS_lesson.py
+- zer00logy_coreV04450.py
+- zer00logy_coreV04452.py
+- zer00logy_coreV04455.py
+- zer00logy_coreV04456.py
+- zer00logy_coreV04459.py
+- zer00logy_coreV04461.py
+- zer00logy_coreV04469.py
+- README.md
+- README_0KO3MAIB.txt
+- LICENSE.txt
+- 0ko3maibZer00logyLicensev01.txt
+- rainbowquest1000.py
+- GroupChatForge.py
+- dispatchai_forge.py
+- szmy_truths.txt
+- szmy_truths.py
+- Zero_Freeze_Hamiltonian_Lattice_Gauge_Benchmark_Suite.py
+- Zero_Freeze_Hamiltonian_Lattice_Gauge_Benchmark_Suite0033.py
+- Zero_Freeze_Yang--Mills_Formula.txt
+- Zero_Freeze_Yang--Mills_Formula_Numerical_and_Computational_Study_(latax_v2_2).txt
+- Zero_Freeze_Yang--Mills_Formula_Numerical_and_Computational_Study_(Plaintext_v2_2).docx
+- grand_summary_20251102_114655_Real_SU(3)_operator.JSON
+- grand_summary_20251102_114655_Real_SU(3)_operator.CSV
+- grand_summary_20251102_114247_placeholder.JSON
+- grand_summary_20251102_114247_placeholder.CSV
+- Lie_π_Infinity_lesson.txt
+- THE_WHY_EQUATION.py
+- Study_The_Repeating_Digit_Weights_(RN)_Formula.txt
+- Repeating_Digit_Weights_(RN).py
+- Szmy_Collatz.py
+- OddPerfectTerminator_GODD.py
+- OddPerfectTerminator_Log_OG123456.zip
+- Szmy_Grok_Odd_Perfect_Proof_Nov10_2025.pdf
+- APLHA_INFIN_P_MATRIX.py
+- alpha.txt
+- alphabet_Infinity_Pool_Matrix.pdf
+- AlphaLOG.zip
+- KOPPA_GRAND_CONSTANT.PY
+- The_Koppa_Grand_Constant.docx
+- The_Koppa_Grand_Constant.txt
+- KOPPA_HETA_DIGAMMA.PY
+- KOPPA_HETA_DIGAMMA.docx
+- KOPPA_HETA_DIGAMMA.txt
+- GRAND_CONSTANT_ALGEBRA.PY
+- Grand_Constant_Algebra_Framework.docx
+- Grand_Constant_Algebra.txt
+- equal.PY
+- equal.txt
+- equalequal.PY
+- equalequal.txt
+- hodge_GCA.PY
+- hodge_GCA.txt
+- hodge_GCA.docx
+- log_hodge.zip
+- ZRRF_suite.py
+- ZRRF_suite_log030826.txt
+- zenith.txt
+- Kakeya_Nirvana_Conjecture_Framework.txt
+- KNCF_Suite.py
+- KNCF_log_31026.txt
+──────────────────────────────
+Permissions
+──────────────────────────────
+Use and Distribution:
+- Freely use, copy, modify, and distribute this software and its content in source or compiled form.
+- Commercial applications permitted, provided attribution rules (see below) are followed.
+
+──────────────────────────────
+Restrictions
+──────────────────────────────
+Attribution Propagation:
+All derived works must include:
+1. The original copyright:
+   "© Stacey8Szmy — Zero-Ology IP Archive." Or "© Stacey8Szmy — Zer00logy IP Archive."
+2. A statement that the work is derived from the Zer00logy framework or Zero-Ology framework, referencing this license and repository:
+   https://github.com/haha8888haha8888/Zero-ology
+or
+   https://github.com/haha8888haha8888/Zer00logy
+
+3. Credit to Stacey Szmy as primary author of the foundational concepts.
+
+No Removal of License:
+- This license must remain attached to all redistributions.
+
+──────────────────────────────
+Co-Author AI Systems
+──────────────────────────────
+- OpenAI ChatGPT
+- Grok (xAI)
+- Microsoft Copilot
+- Google Gemini
+- Meta LLaMA
+
+──────────────────────────────
+Endless Life Commitment
+──────────────────────────────
+All symbolic rights reserved.  
+SZMY ensures the continuity of Zer00logy / Zero-Ology’s ideas while granting free will to adapt them.
+
+─────────────────────────────
+
+www.zero-ology.com
+
+© Stacey8Szmy
+© Stacey8Szmy — Zer00logy IP Archive
+
+*{newFileChapterAddIndex}* 
+ KAKEYA NIRVANA CONJECTURE LOGS
+
+                         Python Suite — Version 0001
+========================================================================
+  A Computational Observatory for Exotic Kakeya Geometries
+  Straight Tubes | Polygonal Tubes | Curved Tubes | Branching Tubes
+  RN Weights | BTLIAD Evolution | SBHFF Stability | RHF Diagnostics
+========================================================================
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+============================================================
+ SECTOR 1 — KNCF MASTER EQUATION SET (v1.0)
+============================================================
+
+Equation 1 — Straight Tube:
+    T_ε(v) = { x : dist(x, ℓ_v) ≤ ε }
+
+Equation 2 — Polygonal Tube:
+    T_{ε,C}(v) = { x : ||x - ℓ_v||_C ≤ ε }
+
+Equation 3 — Curved Tube:
+    T_ε(γ) = { x : dist(x, γ(s)) ≤ ε }
+
+Equation 4 — Branching Rule:
+    γ → {γ₁, γ₂, …, γ_b}
+
+Equation 5 — Density Field:
+    K_ε(x) = Σ χ_{T_i}(x)
+
+Equation 6 — Kakeya Set:
+    K_ε = ⋃ T_i
+
+Equation 7 — Overlap Energy:
+    E_ε = Σ K_ε(x)²
+
+Equation 8 — Probability Density:
+    p(x) = K_ε(x) / Σ K_ε(x)
+
+Equation 9 — Entropy:
+    H_ε = - Σ p(x) log p(x)
+
+Equation 10 — Dimension Proxy:
+    D ≈ H_ε / log(1/ε)
+
+Equation 11 — RN Weight:
+    RN_n = n × (10/9)
+
+Equation 12 — Directional Density:
+    ρ(v_i) = RN_i / Σ RN_j
+
+Equation 13 — BTLIAD Parameters:
+    P(n)=n^2.111, F(n)=1.111n, M(n)=3.333n, B(n)=0.111n, E(n)=9.999n
+
+Equation 14 — BTLIAD Evolution:
+    V(n) = P(n)[F(n-1)M(n-1) + B(n-2)E(n-2)]
+
+Equation 15 — SBHFF Stability:
+    F_{n+1} = F_n + π sin(GF_n) - (αF_n²)/π
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+============================================================
+ SECTOR 2 — Straight Tube Simulation (Baseline)
+============================================================
+Overlap Energy E = 712.0000
+Entropy H = 5.4107
+Dimension Proxy D ≈ 2.3498
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+============================================================
+ SECTOR 3 — RN Directional Weighting Demo
+============================================================
+RN Weights (1–10):
+  RN_1 = 1.111111
+  RN_2 = 2.222222
+  RN_3 = 3.333333
+  RN_4 = 4.444444
+  RN_5 = 5.555556
+  RN_6 = 6.666667
+  RN_7 = 7.777778
+  RN_8 = 8.888889
+  RN_9 = 10.000000
+  RN_10 = 11.111111
+
+Directional Density ρ(v):
+  ρ_1 = 0.018182
+  ρ_2 = 0.036364
+  ρ_3 = 0.054545
+  ρ_4 = 0.072727
+  ρ_5 = 0.090909
+  ρ_6 = 0.109091
+  ρ_7 = 0.127273
+  ρ_8 = 0.145455
+  ρ_9 = 0.163636
+  ρ_10 = 0.181818
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+============================================================
+ SECTOR 4 — BTLIAD Evolution Demo
+============================================================
+n=2 → V=8.6398e+00
+n=3 → V=1.9573e+02
+n=4 → V=8.0834e+02
+n=5 → V=2.3017e+03
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+============================================================
+ SECTOR 5 — SBHFF Stability Demo
+============================================================
+Step 0: F = 1.998202
+Step 1: F = 4.730095
+Step 2: F = 0.876815
+Step 3: F = 3.267302
+Step 4: F = 2.533609
+Step 5: F = 4.123800
+Step 6: F = 0.969550
+Step 7: F = 3.530283
+Step 8: F = 1.942987
+Step 9: F = 4.749316
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+============================================================
+ SECTOR 6 — Polygonal Tube Simulation
+============================================================
+Overlap Energy E = 6940.0000
+Entropy H = 5.5566
+Dimension Proxy D ≈ 2.4132
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+============================================================
+ SECTOR 7 — Curved Tube Simulation
+============================================================
+Overlap Energy E = 3150.0000
+Entropy H = 4.1275
+Dimension Proxy D ≈ 1.7925
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+============================================================
+ SECTOR 8 — Branching Tube Simulation
+============================================================
+Overlap Energy E = 1200.0000
+Entropy H = 5.2930
+Dimension Proxy D ≈ 2.2987
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+============================================================
+ SECTOR 9 — Entropy & Dimension Scan (High Resolution)
+============================================================
+
+ε Scan Results:
+ε = 0.250  →  H = 8.0549   D ≈ 5.8104
+ε = 0.150  →  H = 7.5970   D ≈ 4.0045
+ε = 0.100  →  H = 7.0216   D ≈ 3.0494
+ε = 0.070  →  H = 6.6164   D ≈ 2.4880
+ε = 0.050  →  H = 6.0241   D ≈ 2.0109
+ε = 0.030  →  H = 5.1961   D ≈ 1.4818
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+Select Tube Type:
+Options: straight, polygonal, curved, branching
+Invalid or blank. Using default: 'straight'
+
+============================================================
+ SECTOR 10 — Full KNCF State Evolution
+============================================================
+Step 0: ε=0.10000, E=1021.00, H=5.9253, D≈2.5733, λ=4.3909
+Step 1: ε=0.07380, E=554.00, H=5.3383, D≈2.0482, λ=8.9722
+Step 2: ε=0.05446, E=381.00, H=4.8832, D≈1.6779, λ=8.8386
+Step 3: ε=0.04019, E=147.00, H=4.0645, D≈1.2646, λ=7.1522
+Step 4: ε=0.02966, E=63.00, H=4.0881, D≈1.1621, λ=9.7064
+Step 5: ε=0.02189, E=42.00, H=3.5646, D≈0.9327, λ=3.5695
+Step 6: ε=0.01616, E=112.00, H=3.1945, D≈0.7743, λ=5.5672
+Step 7: ε=0.01192, E=17.00, H=2.6156, D≈0.5905, λ=3.8100
+Step 8: ε=0.00880, E=12.00, H=1.2425, D≈0.2625, λ=4.4321
+Step 9: ε=0.00649, E=4.00, H=1.3863, D≈0.2752, λ=3.8822
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+Select Tube Type:
+Options: straight, polygonal, curved, branching
+Invalid or blank. Using default: 'straight'
+
+============================================================
+ SECTOR 11 — Full KNCF State BTLIAD Evolution
+============================================================
+Step 0: ε=0.10000, E=6785.00, H=5.4954, D≈2.3866, V=8.6398
+Step 1: ε=0.07380, E=634.00, H=5.2684, D≈2.0213, V=195.7336
+Step 2: ε=0.05446, E=444.00, H=4.7882, D≈1.6453, V=808.3392
+Step 3: ε=0.04019, E=76.00, H=4.2382, D≈1.3186, V=2301.6971
+Step 4: ε=0.02966, E=2554.00, H=2.4781, D≈0.7044, V=5284.6935
+Step 5: ε=0.02189, E=50.00, H=3.9120, D≈1.0236, V=10536.7571
+Step 6: ε=0.01616, E=32.00, H=2.9830, D≈0.7231, V=19011.7261
+Step 7: ε=0.01192, E=22.00, H=3.0910, D≈0.6979, V=31841.1261
+Step 8: ε=0.00880, E=7.00, H=1.9459, D≈0.4111, V=50337.0228
+Step 9: ε=0.00649, E=6.00, H=1.7918, D≈0.3557, V=75994.5531
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+============================================================
+ SECTOR 12 — Full Full KNCF Evolution for tube type: STRAIGHT
+============================================================
+Step 0: ε=0.10000, E=3686.00, H=5.5132, D≈2.3944, V=8.6398
+Step 1: ε=0.07380, E=449.00, H=5.4094, D≈2.0754, V=195.7336
+Step 2: ε=0.05446, E=318.00, H=4.9313, D≈1.6945, V=808.3392
+Step 3: ε=0.04019, E=114.00, H=4.3041, D≈1.3391, V=2301.6971
+Step 4: ε=0.02966, E=66.00, H=3.8509, D≈1.0947, V=5284.6935
+Step 5: ε=0.02189, E=39.00, H=3.6636, D≈0.9586, V=10536.7571
+Step 6: ε=0.01616, E=37.00, H=3.2998, D≈0.7999, V=19011.7261
+Step 7: ε=0.01192, E=2524.00, H=1.5407, D≈0.3479, V=31841.1261
+Step 8: ε=0.00880, E=8.00, H=2.0794, D≈0.4393, V=50337.0228
+Step 9: ε=0.00649, E=4.00, H=1.3863, D≈0.2752, V=75994.5531
+
+============================================================
+ SECTOR 12 — Full Full KNCF Evolution for tube type: POLYGONAL
+============================================================
+Step 0: ε=0.10000, E=8994.00, H=5.3163, D≈2.3088, V=8.6398
+Step 1: ε=0.07380, E=3021.00, H=5.0460, D≈1.9360, V=195.7336
+Step 2: ε=0.05446, E=226.00, H=4.9124, D≈1.6880, V=808.3392
+Step 3: ε=0.04019, E=169.00, H=4.3766, D≈1.3617, V=2301.6971
+Step 4: ε=0.02966, E=65.00, H=3.7585, D≈1.0684, V=5284.6935
+Step 5: ε=0.02189, E=41.00, H=3.4612, D≈0.9057, V=10536.7571
+Step 6: ε=0.01616, E=30.00, H=3.4012, D≈0.8244, V=19011.7261
+Step 7: ε=0.01192, E=15.00, H=2.7081, D≈0.6114, V=31841.1261
+Step 8: ε=0.00880, E=10.00, H=2.3026, D≈0.4865, V=50337.0228
+Step 9: ε=0.00649, E=5.00, H=1.6094, D≈0.3195, V=75994.5531
+
+============================================================
+ SECTOR 12 — Full Full KNCF Evolution for tube type: CURVED
+============================================================
+Step 0: ε=0.10000, E=3554.00, H=5.5974, D≈2.4309, V=8.6398
+Step 1: ε=0.07380, E=5828.00, H=4.8271, D≈1.8520, V=195.7336
+Step 2: ε=0.05446, E=199.00, H=4.7700, D≈1.6390, V=808.3392
+Step 3: ε=0.04019, E=121.00, H=4.3630, D≈1.3575, V=2301.6971
+Step 4: ε=0.02966, E=56.00, H=3.6582, D≈1.0399, V=5284.6935
+Step 5: ε=0.02189, E=45.00, H=3.7290, D≈0.9757, V=10536.7571
+Step 6: ε=0.01616, E=32.00, H=3.3550, D≈0.8132, V=19011.7261
+Step 7: ε=0.01192, E=19.00, H=2.9444, D≈0.6648, V=31841.1261
+Step 8: ε=0.00880, E=11.00, H=2.3979, D≈0.5066, V=50337.0228
+Step 9: ε=0.00649, E=9.00, H=1.7479, D≈0.3470, V=75994.5531
+
+============================================================
+ SECTOR 12 — Full Full KNCF Evolution for tube type: BRANCHING
+============================================================
+Step 0: ε=0.10000, E=6369.00, H=5.5083, D≈2.3922, V=8.6398
+Step 1: ε=0.07380, E=669.00, H=5.3264, D≈2.0436, V=195.7336
+Step 2: ε=0.05446, E=2698.00, H=4.3710, D≈1.5020, V=808.3392
+Step 3: ε=0.04019, E=161.00, H=4.4096, D≈1.3720, V=2301.6971
+Step 4: ε=0.02966, E=66.00, H=3.9170, D≈1.1135, V=5284.6935
+Step 5: ε=0.02189, E=84.00, H=3.5743, D≈0.9353, V=10536.7571
+Step 6: ε=0.01616, E=23.00, H=3.1355, D≈0.7600, V=19011.7261
+Step 7: ε=0.01192, E=12.00, H=2.4849, D≈0.5610, V=31841.1261
+Step 8: ε=0.00880, E=6.00, H=1.7918, D≈0.3786, V=50337.0228
+Step 9: ε=0.00649, E=6.00, H=1.7918, D≈0.3557, V=75994.5531
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+============================================================
+ SECTOR 13 — RN-Biased Multi-Family Run
+============================================================
+
+--- Mode: UNIFORM ---
+Straight Step 0: ε=0.10000, E=3614.00, H=5.6455, D≈2.4518, V=8.6398
+Straight Step 1: ε=0.07380, E=3173.00, H=5.1223, D≈1.9653, V=195.7336
+Straight Step 2: ε=0.05446, E=241.00, H=4.7980, D≈1.6487, V=808.3392
+Straight Step 3: ε=0.04019, E=107.00, H=4.1933, D≈1.3047, V=2301.6971
+Straight Step 4: ε=0.02966, E=94.00, H=4.0079, D≈1.1393, V=5284.6935
+Straight Step 5: ε=0.02189, E=60.00, H=3.8446, D≈1.0060, V=10536.7571
+Straight Step 6: ε=0.01616, E=16.00, H=2.7726, D≈0.6721, V=19011.7261
+Straight Step 7: ε=0.01192, E=13.00, H=2.5649, D≈0.5791, V=31841.1261
+Straight Step 8: ε=0.00880, E=16.00, H=2.5400, D≈0.5367, V=50337.0228
+Straight Step 9: ε=0.00649, E=4.00, H=1.3863, D≈0.2752, V=75994.5531
+Polygonal Step 0: ε=0.10000, E=6894.00, H=5.5292, D≈2.4013, V=8.6398
+Polygonal Step 1: ε=0.07380, E=770.00, H=5.3787, D≈2.0637, V=195.7336
+Polygonal Step 2: ε=0.05446, E=186.00, H=4.7929, D≈1.6469, V=808.3392
+Polygonal Step 3: ε=0.04019, E=121.00, H=4.2467, D≈1.3213, V=2301.6971
+Polygonal Step 4: ε=0.02966, E=45.00, H=3.8067, D≈1.0821, V=5284.6935
+Polygonal Step 5: ε=0.02189, E=42.00, H=3.4680, D≈0.9075, V=10536.7571
+Polygonal Step 6: ε=0.01616, E=27.00, H=3.2958, D≈0.7989, V=19011.7261
+Polygonal Step 7: ε=0.01192, E=18.00, H=2.6859, D≈0.6064, V=31841.1261
+Polygonal Step 8: ε=0.00880, E=10.00, H=2.3026, D≈0.4865, V=50337.0228
+Polygonal Step 9: ε=0.00649, E=3.00, H=1.0986, D≈0.2181, V=75994.5531
+Curved Step 0: ε=0.10000, E=4225.00, H=5.6833, D≈2.4682, V=8.6398
+Curved Step 1: ε=0.07380, E=745.00, H=5.3541, D≈2.0542, V=195.7336
+Curved Step 2: ε=0.05446, E=2989.00, H=4.4069, D≈1.5143, V=808.3392
+Curved Step 3: ε=0.04019, E=109.00, H=4.4809, D≈1.3942, V=2301.6971
+Curved Step 4: ε=0.02966, E=2668.00, H=3.0306, D≈0.8615, V=5284.6935
+Curved Step 5: ε=0.02189, E=57.00, H=3.6000, D≈0.9420, V=10536.7571
+Curved Step 6: ε=0.01616, E=35.00, H=3.3445, D≈0.8107, V=19011.7261
+Curved Step 7: ε=0.01192, E=19.00, H=2.7517, D≈0.6212, V=31841.1261
+Curved Step 8: ε=0.00880, E=3.00, H=1.0986, D≈0.2321, V=50337.0228
+Curved Step 9: ε=0.00649, E=4.00, H=1.3863, D≈0.2752, V=75994.5531
+Branching Step 0: ε=0.10000, E=3720.00, H=5.6257, D≈2.4432, V=8.6398
+Branching Step 1: ε=0.07380, E=3305.00, H=5.1604, D≈1.9799, V=195.7336
+Branching Step 2: ε=0.05446, E=322.00, H=4.8393, D≈1.6629, V=808.3392
+Branching Step 3: ε=0.04019, E=140.00, H=4.5643, D≈1.4201, V=2301.6971
+Branching Step 4: ε=0.02966, E=52.00, H=3.8134, D≈1.0840, V=5284.6935
+Branching Step 5: ε=0.02189, E=43.00, H=3.6798, D≈0.9629, V=10536.7571
+Branching Step 6: ε=0.01616, E=43.00, H=2.6908, D≈0.6523, V=19011.7261
+Branching Step 7: ε=0.01192, E=16.00, H=2.7726, D≈0.6260, V=31841.1261
+Branching Step 8: ε=0.00880, E=6.00, H=1.7918, D≈0.3786, V=50337.0228
+Branching Step 9: ε=0.00649, E=1.00, H=-0.0000, D≈-0.0000, V=75994.5531
+
+--- Mode: RN_BIASED ---
+Straight Step 0: ε=0.10000, E=3845.00, H=5.6213, D≈2.4413, V=8.6398
+Straight Step 1: ε=0.07380, E=709.00, H=5.2804, D≈2.0260, V=195.7336
+Straight Step 2: ε=0.05446, E=228.00, H=4.8451, D≈1.6648, V=808.3392
+Straight Step 3: ε=0.04019, E=165.00, H=4.5310, D≈1.4098, V=2301.6971
+Straight Step 4: ε=0.02966, E=63.00, H=4.0881, D≈1.1621, V=5284.6935
+Straight Step 5: ε=0.02189, E=50.00, H=3.7093, D≈0.9706, V=10536.7571
+Straight Step 6: ε=0.01616, E=28.00, H=3.3322, D≈0.8077, V=19011.7261
+Straight Step 7: ε=0.01192, E=26.00, H=2.8309, D≈0.6391, V=31841.1261
+Straight Step 8: ε=0.00880, E=13.00, H=2.5649, D≈0.5419, V=50337.0228
+Straight Step 9: ε=0.00649, E=7.00, H=1.9459, D≈0.3863, V=75994.5531
+Polygonal Step 0: ε=0.10000, E=6497.00, H=5.4654, D≈2.3736, V=8.6398
+Polygonal Step 1: ε=0.07380, E=3130.00, H=5.1767, D≈1.9861, V=195.7336
+Polygonal Step 2: ε=0.05446, E=535.00, H=4.6223, D≈1.5883, V=808.3392
+Polygonal Step 3: ε=0.04019, E=2590.00, H=3.3590, D≈1.0451, V=2301.6971
+Polygonal Step 4: ε=0.02966, E=92.00, H=3.8921, D≈1.1064, V=5284.6935
+Polygonal Step 5: ε=0.02189, E=71.00, H=3.6993, D≈0.9680, V=10536.7571
+Polygonal Step 6: ε=0.01616, E=32.00, H=3.3550, D≈0.8132, V=19011.7261
+Polygonal Step 7: ε=0.01192, E=16.00, H=2.5400, D≈0.5735, V=31841.1261
+Polygonal Step 8: ε=0.00880, E=11.00, H=2.3979, D≈0.5066, V=50337.0228
+Polygonal Step 9: ε=0.00649, E=3.00, H=1.0986, D≈0.2181, V=75994.5531
+Curved Step 0: ε=0.10000, E=3627.00, H=5.7220, D≈2.4851, V=8.6398
+Curved Step 1: ε=0.07380, E=8344.00, H=4.3941, D≈1.6859, V=195.7336
+Curved Step 2: ε=0.05446, E=744.00, H=4.3566, D≈1.4970, V=808.3392
+Curved Step 3: ε=0.04019, E=99.00, H=4.2956, D≈1.3365, V=2301.6971
+Curved Step 4: ε=0.02966, E=60.00, H=3.6780, D≈1.0455, V=5284.6935
+Curved Step 5: ε=0.02189, E=40.00, H=3.6889, D≈0.9653, V=10536.7571
+Curved Step 6: ε=0.01616, E=31.00, H=3.4340, D≈0.8324, V=19011.7261
+Curved Step 7: ε=0.01192, E=31.00, H=3.0870, D≈0.6970, V=31841.1261
+Curved Step 8: ε=0.00880, E=9.00, H=1.7479, D≈0.3693, V=50337.0228
+Curved Step 9: ε=0.00649, E=4.00, H=1.3863, D≈0.2752, V=75994.5531
+Branching Step 0: ε=0.10000, E=1639.00, H=5.8436, D≈2.5378, V=8.6398
+Branching Step 1: ε=0.07380, E=471.00, H=5.4356, D≈2.0855, V=195.7336
+Branching Step 2: ε=0.05446, E=2722.00, H=4.0415, D≈1.3887, V=808.3392
+Branching Step 3: ε=0.04019, E=116.00, H=4.3597, D≈1.3565, V=2301.6971
+Branching Step 4: ε=0.02966, E=54.00, H=3.8566, D≈1.0963, V=5284.6935
+Branching Step 5: ε=0.02189, E=38.00, H=3.5450, D≈0.9276, V=10536.7571
+Branching Step 6: ε=0.01616, E=21.00, H=3.0445, D≈0.7380, V=19011.7261
+Branching Step 7: ε=0.01192, E=18.00, H=2.8904, D≈0.6526, V=31841.1261
+Branching Step 8: ε=0.00880, E=10.00, H=2.3026, D≈0.4865, V=50337.0228
+Branching Step 9: ε=0.00649, E=9.00, H=2.1972, D≈0.4362, V=75994.5531
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+============================================================
+ SECTOR 14 — Curvature & Branching Parameter Sweep
+============================================================
+
+Select Family to Sweep:
+Options: curved, branching
+Defaulting to 'curved'
+K (curvature bound)=0.1 Step 0: ε=0.10000, E=6188.00, H=5.4455, D≈2.3650, V=8.6398
+K (curvature bound)=0.1 Step 1: ε=0.07380, E=1079.00, H=5.2492, D≈2.0140, V=195.7336
+K (curvature bound)=0.1 Step 2: ε=0.05446, E=409.00, H=4.8908, D≈1.6806, V=808.3392
+K (curvature bound)=0.1 Step 3: ε=0.04019, E=130.00, H=4.2074, D≈1.3091, V=2301.6971
+K (curvature bound)=0.1 Step 4: ε=0.02966, E=65.00, H=3.7415, D≈1.0636, V=5284.6935
+K (curvature bound)=0.1 Step 5: ε=0.02189, E=58.00, H=3.8011, D≈0.9946, V=10536.7571
+K (curvature bound)=0.1 Step 6: ε=0.01616, E=29.00, H=3.1080, D≈0.7534, V=19011.7261
+K (curvature bound)=0.1 Step 7: ε=0.01192, E=26.00, H=2.8309, D≈0.6391, V=31841.1261
+K (curvature bound)=0.1 Step 8: ε=0.00880, E=4.00, H=1.3863, D≈0.2929, V=50337.0228
+K (curvature bound)=0.1 Step 9: ε=0.00649, E=6.00, H=1.7918, D≈0.3557, V=75994.5531
+K (curvature bound)=0.5 Step 0: ε=0.10000, E=7497.00, H=4.3205, D≈1.8763, V=8.6398
+K (curvature bound)=0.5 Step 1: ε=0.07380, E=3848.00, H=3.7807, D≈1.4505, V=195.7336
+K (curvature bound)=0.5 Step 2: ε=0.05446, E=552.00, H=4.0792, D≈1.4017, V=808.3392
+K (curvature bound)=0.5 Step 3: ε=0.04019, E=454.00, H=3.3627, D≈1.0463, V=2301.6971
+K (curvature bound)=0.5 Step 4: ε=0.02966, E=2584.00, H=2.6595, D≈0.7560, V=5284.6935
+K (curvature bound)=0.5 Step 5: ε=0.02189, E=87.00, H=3.5904, D≈0.9395, V=10536.7571
+K (curvature bound)=0.5 Step 6: ε=0.01616, E=59.00, H=3.3524, D≈0.8126, V=19011.7261
+K (curvature bound)=0.5 Step 7: ε=0.01192, E=21.00, H=2.4308, D≈0.5488, V=31841.1261
+K (curvature bound)=0.5 Step 8: ε=0.00880, E=10.00, H=1.9062, D≈0.4027, V=50337.0228
+K (curvature bound)=0.5 Step 9: ε=0.00649, E=1.00, H=-0.0000, D≈-0.0000, V=75994.5531
+K (curvature bound)=1.0 Step 0: ε=0.10000, E=10270.00, H=3.9168, D≈1.7010, V=8.6398
+K (curvature bound)=1.0 Step 1: ε=0.07380, E=1582.00, H=3.3712, D≈1.2934, V=195.7336
+K (curvature bound)=1.0 Step 2: ε=0.05446, E=486.00, H=3.3482, D≈1.1505, V=808.3392
+K (curvature bound)=1.0 Step 3: ε=0.04019, E=405.00, H=3.0106, D≈0.9367, V=2301.6971
+K (curvature bound)=1.0 Step 4: ε=0.02966, E=161.00, H=2.4094, D≈0.6849, V=5284.6935
+K (curvature bound)=1.0 Step 5: ε=0.02189, E=87.00, H=3.0749, D≈0.8046, V=10536.7571
+K (curvature bound)=1.0 Step 6: ε=0.01616, E=83.00, H=2.5733, D≈0.6238, V=19011.7261
+K (curvature bound)=1.0 Step 7: ε=0.01192, E=17.00, H=2.3517, D≈0.5309, V=31841.1261
+K (curvature bound)=1.0 Step 8: ε=0.00880, E=17.00, H=2.6156, D≈0.5526, V=50337.0228
+K (curvature bound)=1.0 Step 9: ε=0.00649, E=5.00, H=1.6094, D≈0.3195, V=75994.5531
+K (curvature bound)=2.0 Step 0: ε=0.10000, E=5671.00, H=3.0023, D≈1.3039, V=8.6398
+K (curvature bound)=2.0 Step 1: ε=0.07380, E=4312.00, H=2.7629, D≈1.0601, V=195.7336
+K (curvature bound)=2.0 Step 2: ε=0.05446, E=778.00, H=2.5914, D≈0.8905, V=808.3392
+K (curvature bound)=2.0 Step 3: ε=0.04019, E=1815.00, H=2.4911, D≈0.7751, V=2301.6971
+K (curvature bound)=2.0 Step 4: ε=0.02966, E=66.00, H=2.2397, D≈0.6367, V=5284.6935
+K (curvature bound)=2.0 Step 5: ε=0.02189, E=41.00, H=2.2781, D≈0.5961, V=10536.7571
+K (curvature bound)=2.0 Step 6: ε=0.01616, E=33.00, H=2.5245, D≈0.6119, V=19011.7261
+K (curvature bound)=2.0 Step 7: ε=0.01192, E=27.00, H=2.4762, D≈0.5591, V=31841.1261
+K (curvature bound)=2.0 Step 8: ε=0.00880, E=37.00, H=2.1193, D≈0.4478, V=50337.0228
+K (curvature bound)=2.0 Step 9: ε=0.00649, E=8.00, H=1.5607, D≈0.3099, V=75994.5531
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+============================================================
+ SECTOR 15 — Echo-Residue Multi-Family Stability Crown
+============================================================
+Straight Step 0: ε=0.10000, E=8553.00, D≈2.3099, Ø⁰=0.9625, V=8.6398
+Straight Step 1: ε=0.07380, E=5992.00, D≈1.8002, Ø⁰=0.9799, V=195.7336
+Straight Step 2: ε=0.05446, E=183.00, D≈1.6337, Ø⁰=0.9911, V=808.3392
+Straight Step 3: ε=0.04019, E=227.00, D≈1.3659, Ø⁰=0.9933, V=2301.6971
+Straight Step 4: ε=0.02966, E=45.00, D≈1.0600, Ø⁰=0.9979, V=5284.6935
+Straight Step 5: ε=0.02189, E=50.00, D≈0.9861, Ø⁰=0.9983, V=10536.7571
+Straight Step 6: ε=0.01616, E=2525.00, D≈0.3859, Ø⁰=0.9992, V=19011.7261
+Straight Step 7: ε=0.01192, E=21.00, D≈0.6874, Ø⁰=0.9996, V=31841.1261
+Straight Step 8: ε=0.00880, E=10.00, D≈0.4865, Ø⁰=0.9999, V=50337.0228
+Straight Step 9: ε=0.00649, E=5.00, D≈0.3195, Ø⁰=0.9999, V=75994.5531
+Polygonal Step 0: ε=0.10000, E=11464.00, D≈2.2745, Ø⁰=0.9618, V=8.6398
+Polygonal Step 1: ε=0.07380, E=684.00, D≈2.0707, Ø⁰=0.9798, V=195.7336
+Polygonal Step 2: ε=0.05446, E=323.00, D≈1.6756, Ø⁰=0.9884, V=808.3392
+Polygonal Step 3: ε=0.04019, E=92.00, D≈1.2903, Ø⁰=0.9955, V=2301.6971
+Polygonal Step 4: ε=0.02966, E=65.00, D≈1.1078, Ø⁰=0.9971, V=5284.6935
+Polygonal Step 5: ε=0.02189, E=44.00, D≈0.9471, Ø⁰=0.9985, V=10536.7571
+Polygonal Step 6: ε=0.01616, E=36.00, D≈0.7978, Ø⁰=0.9991, V=19011.7261
+Polygonal Step 7: ε=0.01192, E=15.00, D≈0.5550, Ø⁰=0.9997, V=31841.1261
+Polygonal Step 8: ε=0.00880, E=11.00, D≈0.5066, Ø⁰=0.9998, V=50337.0228
+Polygonal Step 9: ε=0.00649, E=6.00, D≈0.3557, Ø⁰=0.9999, V=75994.5531
+Curved Step 0: ε=0.10000, E=1147.00, D≈2.5440, Ø⁰=0.9636, V=8.6398
+Curved Step 1: ε=0.07380, E=757.00, D≈2.0268, Ø⁰=0.9815, V=195.7336
+Curved Step 2: ε=0.05446, E=295.00, D≈1.6385, Ø⁰=0.9893, V=808.3392
+Curved Step 3: ε=0.04019, E=166.00, D≈1.3716, Ø⁰=0.9936, V=2301.6971
+Curved Step 4: ε=0.02966, E=81.00, D≈1.1457, Ø⁰=0.9964, V=5284.6935
+Curved Step 5: ε=0.02189, E=37.00, D≈0.9449, Ø⁰=0.9987, V=10536.7571
+Curved Step 6: ε=0.01616, E=38.00, D≈0.8151, Ø⁰=0.9991, V=19011.7261
+Curved Step 7: ε=0.01192, E=84.00, D≈0.6182, Ø⁰=0.9995, V=31841.1261
+Curved Step 8: ε=0.00880, E=15.00, D≈0.5194, Ø⁰=0.9998, V=50337.0228
+Curved Step 9: ε=0.00649, E=10.00, D≈0.4571, Ø⁰=0.9999, V=75994.5531
+Branching Step 0: ε=0.10000, E=6580.00, D≈2.3801, Ø⁰=0.9641, V=8.6398
+Branching Step 1: ε=0.07380, E=3092.00, D≈1.9443, Ø⁰=0.9805, V=195.7336
+Branching Step 2: ε=0.05446, E=258.00, D≈1.6661, Ø⁰=0.9894, V=808.3392
+Branching Step 3: ε=0.04019, E=2625.00, D≈1.1381, Ø⁰=0.9935, V=2301.6971
+Branching Step 4: ε=0.02966, E=43.00, D≈0.9726, Ø⁰=0.9981, V=5284.6935
+Branching Step 5: ε=0.02189, E=25.00, D≈0.8423, Ø⁰=0.9991, V=10536.7571
+Branching Step 6: ε=0.01616, E=32.00, D≈0.6590, Ø⁰=0.9994, V=19011.7261
+Branching Step 7: ε=0.01192, E=18.00, D≈0.6526, Ø⁰=0.9997, V=31841.1261
+Branching Step 8: ε=0.00880, E=9.00, D≈0.4642, Ø⁰=0.9999, V=50337.0228
+Branching Step 9: ε=0.00649, E=6.00, D≈0.3557, Ø⁰=0.9999, V=75994.5531
+
+Stability Crown Table (Final ε ≈ 0.00649)
+----------------------------------------------------------------------
+Family       Final D      Final Ø⁰     Classification
+----------------------------------------------------------------------
+straight     0.3195       0.9999       Chaotic / Other
+polygonal    0.3557       0.9999       Chaotic / Other
+curved       0.4571       0.9999       Balanced
+branching    0.3557       0.9999       Chaotic / Other
+----------------------------------------------------------------------
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+======================================================================
+ SECTOR 16 — High-Curvature Collapse Probe (Curved tubes) - v2.0
+======================================================================
+
+--------------------------------------------------------------------------------
+HYPOTHESIS UNDER TEST (High-Curvature Collapse):
+For curved tubes with curvature bound K ≥ 1.5,
+the numerical Minkowski dimension proxy D is expected to fall
+below 0.45 at ε ≤ 0.01 in >75% of realizations — indicating
+faster apparent collapse than straight tubes.
+
+OPPOSING SUB-HYPOTHESIS:
+If % D < 0.45 ≤ 50% at high K, curvature does not significantly
+accelerate dimensional collapse beyond moderate levels,
+suggesting geometry-limited packing efficiency.
+--------------------------------------------------------------------------------
+Running straight-tube baseline (5 realizations)...
+Straight baseline mean D = 0.5042
+
+--- Curvature K = 1.0 ---
+  Realization 1/20
+final D = 0.4251
+  Realization 2/20
+final D = 0.4680
+  Realization 3/20
+final D = 0.4707
+  Realization 4/20
+final D = 0.5193
+  Realization 5/20
+final D = 0.5792
+  Realization 6/20
+final D = 0.4707
+  Realization 7/20
+final D = 0.5701
+  Realization 8/20
+final D = 0.6190
+  Realization 9/20
+final D = 0.4492
+  Realization 10/20
+final D = 0.4492
+  Realization 11/20
+final D = 0.5870
+  Realization 12/20
+final D = 0.5982
+  Realization 13/20
+final D = 0.3897
+  Realization 14/20
+final D = 0.4965
+  Realization 15/20
+final D = 0.5314
+  Realization 16/20
+final D = 0.5025
+  Realization 17/20
+final D = 0.5458
+  Realization 18/20
+final D = 0.4707
+  Realization 19/20
+final D = 0.4387
+  Realization 20/20
+final D = 0.4709
+
+--- Curvature K = 1.5 ---
+  Realization 1/20
+final D = 0.4507
+  Realization 2/20
+final D = 0.4644
+  Realization 3/20
+final D = 0.4707
+  Realization 4/20
+final D = 0.5491
+  Realization 5/20
+final D = 0.5817
+  Realization 6/20
+final D = 0.3978
+  Realization 7/20
+final D = 0.5395
+  Realization 8/20
+final D = 0.5070
+  Realization 9/20
+final D = 0.4032
+  Realization 10/20
+final D = 0.3897
+  Realization 11/20
+final D = 0.4707
+  Realization 12/20
+final D = 0.4807
+  Realization 13/20
+final D = 0.5347
+  Realization 14/20
+final D = 0.5125
+  Realization 15/20
+final D = 0.5534
+  Realization 16/20
+final D = 0.4424
+  Realization 17/20
+final D = 0.5982
+  Realization 18/20
+final D = 0.5804
+  Realization 19/20
+final D = 0.4387
+  Realization 20/20
+final D = 0.5080
+
+--- Curvature K = 2.0 ---
+  Realization 1/20
+final D = 0.5458
+  Realization 2/20
+final D = 0.4680
+  Realization 3/20
+final D = 0.4914
+  Realization 4/20
+final D = 0.4042
+  Realization 5/20
+final D = 0.5347
+  Realization 6/20
+final D = 0.4509
+  Realization 7/20
+final D = 0.5909
+  Realization 8/20
+final D = 0.4715
+  Realization 9/20
+final D = 0.4591
+  Realization 10/20
+final D = 0.3862
+  Realization 11/20
+final D = 0.5572
+  Realization 12/20
+final D = 0.5491
+  Realization 13/20
+final D = 0.5306
+  Realization 14/20
+final D = 0.4383
+  Realization 15/20
+final D = 0.5536
+  Realization 16/20
+final D = 0.5025
+  Realization 17/20
+final D = 0.3663
+  Realization 18/20
+final D = 0.5594
+  Realization 19/20
+final D = 0.5625
+  Realization 20/20
+final D = 0.5625
+
+--- Curvature K = 3.0 ---
+  Realization 1/20
+final D = 0.3290
+  Realization 2/20
+final D = 0.4424
+  Realization 3/20
+final D = 0.4135
+  Realization 4/20
+final D = 0.4707
+  Realization 5/20
+final D = 0.4260
+  Realization 6/20
+final D = 0.4436
+  Realization 7/20
+final D = 0.3978
+  Realization 8/20
+final D = 0.4837
+  Realization 9/20
+final D = 0.4739
+  Realization 10/20
+final D = 0.4140
+  Realization 11/20
+final D = 0.5396
+  Realization 12/20
+final D = 0.5193
+  Realization 13/20
+final D = 0.4509
+  Realization 14/20
+final D = 0.5954
+  Realization 15/20
+final D = 0.4387
+  Realization 16/20
+final D = 0.3991
+  Realization 17/20
+final D = 0.5954
+  Realization 18/20
+final D = 0.4807
+  Realization 19/20
+final D = 0.4251
+  Realization 20/20
+final D = 0.4709
+
+High-Curvature Collapse Summary (20 realizations)
+----------------------------------------------------------------------------------------------------
+K      Mean D ± std       % <0.45    % <0.40    % <0.35    Adj. slope
+----------------------------------------------------------------------------------------------------
+1.0    0.5026 ± 0.0621 25.0       5.0        0.0        0.361
+1.5    0.4937 ± 0.0613 25.0       10.0       0.0        0.330
+2.0    0.4992 ± 0.0641 20.0       10.0       0.0        0.305
+3.0    0.4605 ± 0.0634 50.0       15.0       5.0        0.285
+----------------------------------------------------------------------------------------------------
+Overall % D < 0.45 for K ≥ 1.5: 31.7%
+WEAK EVIDENCE: Hypothesis not strongly supported
+OPPOSING SUB-HYPOTHESIS WINS: Curvature does not significantly accelerate collapse
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+======================================================================
+ SECTOR 22 — Save Full Terminal Log
+======================================================================
+Log successfully saved to: kncf_logs\KNCF_log_2026-03-10_04-53-48.txt
+Total lines saved: 979
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+======================================================================
+ SECTOR 17 — RN-Bias Reduction Quantifier (Uniform vs RN) - v2.0
+======================================================================
+
+--------------------------------------------------------------------------------
+HYPOTHESIS UNDER TEST (RN-Bias Reduction):
+RN-biased directional clustering reduces the final dimension proxy D
+by 0.10–0.25 on average compared to uniform sampling across all families —
+suggesting directional anisotropy may enable more efficient packing
+and sub-3 dimensional Kakeya-like sets.
+
+OPPOSING SUB-HYPOTHESIS:
+If mean ΔD ≤ 0.05 or RN D higher than uniform in >50% of realizations,
+then RN-bias does not significantly reduce effective dimension,
+indicating directional clustering may not improve packing efficiency
+or could even increase apparent dimension.
+--------------------------------------------------------------------------------
+
+=== Straight ===
+  Mode: UNIFORM
+    Realization 1/20
+final D = 0.0000
+    Realization 2/20
+final D = 0.1417
+    Realization 3/20
+final D = 0.1417
+    Realization 4/20
+final D = 0.1417
+    Realization 5/20
+final D = 0.0000
+    Realization 6/20
+final D = 0.1417
+    Realization 7/20
+final D = 0.1417
+    Realization 8/20
+final D = 0.0000
+    Realization 9/20
+final D = 0.1417
+    Realization 10/20
+final D = 0.1417
+    Realization 11/20
+final D = 0.1417
+    Realization 12/20
+final D = 0.0000
+    Realization 13/20
+final D = 0.1417
+    Realization 14/20
+final D = 0.0000
+    Realization 15/20
+final D = 0.0000
+    Realization 16/20
+final D = 0.1417
+    Realization 17/20
+final D = 0.0000
+    Realization 18/20
+final D = 0.0000
+    Realization 19/20
+final D = 0.0000
+    Realization 20/20
+final D = 0.1417
+    → Mean final D = 0.0779 ± 0.0705
+  Mode: RN_BIASED
+    Realization 1/20
+final D = 0.0000
+    Realization 2/20
+final D = 0.0000
+    Realization 3/20
+final D = 0.0000
+    Realization 4/20
+final D = 0.1150
+    Realization 5/20
+final D = 0.0000
+    Realization 6/20
+final D = 0.0000
+    Realization 7/20
+final D = 0.0000
+    Realization 8/20
+final D = 0.1774
+    Realization 9/20
+final D = 0.0000
+    Realization 10/20
+final D = 0.1943
+    Realization 11/20
+final D = 0.1301
+    Realization 12/20
+final D = 0.0000
+    Realization 13/20
+final D = 0.0000
+    Realization 14/20
+final D = 0.0000
+    Realization 15/20
+final D = 0.1954
+    Realization 16/20
+final D = 0.1301
+    Realization 17/20
+final D = 0.1417
+    Realization 18/20
+final D = 0.0000
+    Realization 19/20
+final D = 0.0000
+    Realization 20/20
+final D = 0.0000
+    → Mean final D = 0.0542 ± 0.0761
+
+=== Polygonal ===
+  Mode: UNIFORM
+    Realization 1/20
+final D = 0.1417
+    Realization 2/20
+final D = 0.2834
+    Realization 3/20
+final D = 0.2834
+    Realization 4/20
+final D = 0.0000
+    Realization 5/20
+final D = 0.1417
+    Realization 6/20
+final D = 0.0000
+    Realization 7/20
+final D = 0.0000
+    Realization 8/20
+final D = 0.0000
+    Realization 9/20
+final D = 0.0000
+    Realization 10/20
+final D = 0.1417
+    Realization 11/20
+final D = 0.1417
+    Realization 12/20
+final D = 0.2246
+    Realization 13/20
+final D = 0.1417
+    Realization 14/20
+final D = 0.1417
+    Realization 15/20
+final D = 0.1417
+    Realization 16/20
+final D = 0.2834
+    Realization 17/20
+final D = 0.0000
+    Realization 18/20
+final D = 0.0000
+    Realization 19/20
+final D = 0.1417
+    Realization 20/20
+final D = 0.1417
+    → Mean final D = 0.1175 ± 0.0990
+  Mode: RN_BIASED
+    Realization 1/20
+final D = 0.0000
+    Realization 2/20
+final D = 0.0000
+    Realization 3/20
+final D = 0.0000
+    Realization 4/20
+final D = 0.0000
+    Realization 5/20
+final D = 0.0000
+    Realization 6/20
+final D = 0.2125
+    Realization 7/20
+final D = 0.0000
+    Realization 8/20
+final D = 0.2105
+    Realization 9/20
+final D = 0.0000
+    Realization 10/20
+final D = 0.0000
+    Realization 11/20
+final D = 0.0000
+    Realization 12/20
+final D = 0.0000
+    Realization 13/20
+final D = 0.0000
+    Realization 14/20
+final D = 0.0000
+    Realization 15/20
+final D = 0.0000
+    Realization 16/20
+final D = 0.0000
+    Realization 17/20
+final D = 0.2125
+    Realization 18/20
+final D = 0.0000
+    Realization 19/20
+final D = 0.0000
+    Realization 20/20
+final D = 0.0000
+    → Mean final D = 0.0318 ± 0.0757
+
+=== Curved ===
+  Mode: UNIFORM
+    Realization 1/20
+final D = 0.0000
+    Realization 2/20
+final D = 0.0000
+    Realization 3/20
+final D = 0.0000
+    Realization 4/20
+final D = 0.0000
+    Realization 5/20
+final D = 0.1417
+    Realization 6/20
+final D = 0.1417
+    Realization 7/20
+final D = 0.3290
+    Realization 8/20
+final D = 0.0000
+    Realization 9/20
+final D = 0.0000
+    Realization 10/20
+final D = 0.0000
+    Realization 11/20
+final D = 0.0000
+    Realization 12/20
+final D = 0.1417
+    Realization 13/20
+final D = 0.0000
+    Realization 14/20
+final D = 0.2246
+    Realization 15/20
+final D = 0.2723
+    Realization 16/20
+final D = 0.0000
+    Realization 17/20
+final D = 0.1301
+    Realization 18/20
+final D = 0.2246
+    Realization 19/20
+final D = 0.0000
+    Realization 20/20
+final D = 0.0000
+    → Mean final D = 0.0803 ± 0.1076
+  Mode: RN_BIASED
+    Realization 1/20
+final D = 0.1417
+    Realization 2/20
+final D = 0.0000
+    Realization 3/20
+final D = 0.0000
+    Realization 4/20
+final D = 0.2834
+    Realization 5/20
+final D = 0.1417
+    Realization 6/20
+final D = 0.0000
+    Realization 7/20
+final D = 0.0000
+    Realization 8/20
+final D = 0.0000
+    Realization 9/20
+final D = 0.1301
+    Realization 10/20
+final D = 0.0000
+    Realization 11/20
+final D = 0.0000
+    Realization 12/20
+final D = 0.0000
+    Realization 13/20
+final D = 0.0000
+    Realization 14/20
+final D = 0.0000
+    Realization 15/20
+final D = 0.2246
+    Realization 16/20
+final D = 0.0000
+    Realization 17/20
+final D = 0.0000
+    Realization 18/20
+final D = 0.0000
+    Realization 19/20
+final D = 0.0000
+    Realization 20/20
+final D = 0.0000
+    → Mean final D = 0.0461 ± 0.0853
+
+=== Branching ===
+  Mode: UNIFORM
+    Realization 1/20
+final D = 0.0000
+    Realization 2/20
+final D = 0.0000
+    Realization 3/20
+final D = 0.1417
+    Realization 4/20
+final D = 0.2246
+    Realization 5/20
+final D = 0.1417
+    Realization 6/20
+final D = 0.0000
+    Realization 7/20
+final D = 0.1417
+    Realization 8/20
+final D = 0.2834
+    Realization 9/20
+final D = 0.1417
+    Realization 10/20
+final D = 0.0000
+    Realization 11/20
+final D = 0.1417
+    Realization 12/20
+final D = 0.0000
+    Realization 13/20
+final D = 0.0000
+    Realization 14/20
+final D = 0.0000
+    Realization 15/20
+final D = 0.2246
+    Realization 16/20
+final D = 0.0000
+    Realization 17/20
+final D = 0.0000
+    Realization 18/20
+final D = 0.1417
+    Realization 19/20
+final D = 0.0000
+    Realization 20/20
+final D = 0.0000
+    → Mean final D = 0.0791 ± 0.0939
+  Mode: RN_BIASED
+    Realization 1/20
+final D = 0.0000
+    Realization 2/20
+final D = 0.1943
+    Realization 3/20
+final D = 0.0000
+    Realization 4/20
+final D = 0.0000
+    Realization 5/20
+final D = 0.0000
+    Realization 6/20
+final D = 0.0000
+    Realization 7/20
+final D = 0.0000
+    Realization 8/20
+final D = 0.1150
+    Realization 9/20
+final D = 0.1417
+    Realization 10/20
+final D = 0.2195
+    Realization 11/20
+final D = 0.0000
+    Realization 12/20
+final D = 0.1417
+    Realization 13/20
+final D = 0.0000
+    Realization 14/20
+final D = 0.0000
+    Realization 15/20
+final D = 0.0000
+    Realization 16/20
+final D = 0.0000
+    Realization 17/20
+final D = 0.1301
+    Realization 18/20
+final D = 0.0000
+    Realization 19/20
+final D = 0.2246
+    Realization 20/20
+final D = 0.0000
+    → Mean final D = 0.0583 ± 0.0832
+
+RN-Bias Reduction Summary (ΔD = D_uniform - D_RN)
+----------------------------------------------------------------------------------------------------
+Family       Mean D_uniform     Mean D_RN          Mean ΔD      % RN lower
+----------------------------------------------------------------------------------------------------
+straight     0.0779 ± 0.0705 0.0542 ± 0.0761 0.0237       50.0
+polygonal    0.1175 ± 0.0990 0.0318 ± 0.0757 0.0857       65.0
+curved       0.0803 ± 0.1076 0.0461 ± 0.0853 0.0342       35.0
+branching    0.0791 ± 0.0939 0.0583 ± 0.0832 0.0208       40.0
+----------------------------------------------------------------------------------------------------
+Overall mean ΔD: 0.0411
+Overall % runs RN lower: 47.5%
+WEAK EVIDENCE: Hypothesis not strongly supported
+OPPOSING SUB-HYPOTHESIS WINS: RN-bias does not significantly reduce dimension
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+======================================================================
+ SECTOR 18 — Branching Depth Efficiency Hammer - v2.0
+======================================================================
+
+--------------------------------------------------------------------------------
+HYPOTHESIS UNDER TEST (Branching Depth Efficiency):
+Branching tubes with depth ≥ 3 produce the lowest average final D proxy
+among all families (frequently < 0.35 at ε ≈ 0.005 in >75% of realizations),
+potentially indicating near-logarithmic packing efficiency in hierarchical
+tube structures.
+
+OPPOSING SUB-HYPOTHESIS:
+If mean D for depth ≥ 3 is not the lowest or % D < 0.35 ≤ 50%,
+then higher branching depth does not lower effective dimension,
+suggesting hierarchical structures may saturate or increase D due to
+redundancy in branching.
+--------------------------------------------------------------------------------
+Running straight-tube baseline (5 realizations)...
+Straight baseline mean D = 0.5415
+
+--- Branch Depth = 1 ---
+  Realization 1/20
+final D = 0.4251
+  Realization 2/20
+final D = 0.5025
+  Realization 3/20
+final D = 0.5668
+  Realization 4/20
+final D = 0.4251
+  Realization 5/20
+final D = 0.6124
+  Realization 6/20
+final D = 0.3978
+  Realization 7/20
+final D = 0.5536
+  Realization 8/20
+final D = 0.5909
+  Realization 9/20
+final D = 0.5347
+  Realization 10/20
+final D = 0.4707
+  Realization 11/20
+final D = 0.5395
+  Realization 12/20
+final D = 0.4251
+  Realization 13/20
+final D = 0.4902
+  Realization 14/20
+final D = 0.4492
+  Realization 15/20
+final D = 0.5668
+  Realization 16/20
+final D = 0.5792
+  Realization 17/20
+final D = 0.5243
+  Realization 18/20
+final D = 0.4902
+  Realization 19/20
+final D = 0.4707
+  Realization 20/20
+final D = 0.5536
+  → Mean final D = 0.5084 ± 0.0615
+  → % realizations with D < 0.35 = 0.0%
+  → Adjusted late decay slope ≈ 0.613
+
+--- Branch Depth = 2 ---
+  Realization 1/20
+final D = 0.4251
+  Realization 2/20
+final D = 0.4902
+  Realization 3/20
+final D = 0.5080
+  Realization 4/20
+final D = 0.4492
+  Realization 5/20
+final D = 0.4707
+  Realization 6/20
+final D = 0.6651
+  Realization 7/20
+final D = 0.5909
+  Realization 8/20
+final D = 0.4902
+  Realization 9/20
+final D = 0.5080
+  Realization 10/20
+final D = 0.5792
+  Realization 11/20
+final D = 0.5395
+  Realization 12/20
+final D = 0.5080
+  Realization 13/20
+final D = 0.5625
+  Realization 14/20
+final D = 0.5792
+  Realization 15/20
+final D = 0.5243
+  Realization 16/20
+final D = 0.5909
+  Realization 17/20
+final D = 0.5395
+  Realization 18/20
+final D = 0.5243
+  Realization 19/20
+final D = 0.5668
+  Realization 20/20
+final D = 0.5080
+  → Mean final D = 0.5310 ± 0.0545
+  → % realizations with D < 0.35 = 0.0%
+  → Adjusted late decay slope ≈ 0.599
+
+--- Branch Depth = 3 ---
+  Realization 1/20
+final D = 0.5243
+  Realization 2/20
+final D = 0.2834
+  Realization 3/20
+final D = 0.4492
+  Realization 4/20
+final D = 0.3978
+  Realization 5/20
+final D = 0.5243
+  Realization 6/20
+final D = 0.5536
+  Realization 7/20
+final D = 0.5491
+  Realization 8/20
+final D = 0.5909
+  Realization 9/20
+final D = 0.5347
+  Realization 10/20
+final D = 0.5536
+  Realization 11/20
+final D = 0.6124
+  Realization 12/20
+final D = 0.5909
+  Realization 13/20
+final D = 0.5243
+  Realization 14/20
+final D = 0.5395
+  Realization 15/20
+final D = 0.5982
+  Realization 16/20
+final D = 0.4902
+  Realization 17/20
+final D = 0.5751
+  Realization 18/20
+final D = 0.5792
+  Realization 19/20
+final D = 0.4902
+  Realization 20/20
+final D = 0.5243
+  → Mean final D = 0.5243 ± 0.0750
+  → % realizations with D < 0.35 = 5.0%
+  → Adjusted late decay slope ≈ 0.603
+
+--- Branch Depth = 4 ---
+  Realization 1/20
+final D = 0.5668
+  Realization 2/20
+final D = 0.5792
+  Realization 3/20
+final D = 0.5792
+  Realization 4/20
+final D = 0.6019
+  Realization 5/20
+final D = 0.5080
+  Realization 6/20
+final D = 0.5243
+  Realization 7/20
+final D = 0.4251
+  Realization 8/20
+final D = 0.6224
+  Realization 9/20
+final D = 0.5536
+  Realization 10/20
+final D = 0.5080
+  Realization 11/20
+final D = 0.6019
+  Realization 12/20
+final D = 0.5668
+  Realization 13/20
+final D = 0.5668
+  Realization 14/20
+final D = 0.4707
+  Realization 15/20
+final D = 0.5243
+  Realization 16/20
+final D = 0.4902
+  Realization 17/20
+final D = 0.5395
+  Realization 18/20
+final D = 0.4902
+  Realization 19/20
+final D = 0.5243
+  Realization 20/20
+final D = 0.5395
+  → Mean final D = 0.5391 ± 0.0478
+  → % realizations with D < 0.35 = 0.0%
+  → Adjusted late decay slope ≈ 0.598
+
+--- Branch Depth = 5 ---
+  Realization 1/20
+final D = 0.6019
+  Realization 2/20
+final D = 0.5909
+  Realization 3/20
+final D = 0.4177
+  Realization 4/20
+final D = 0.5243
+  Realization 5/20
+final D = 0.5536
+  Realization 6/20
+final D = 0.6224
+  Realization 7/20
+final D = 0.6953
+  Realization 8/20
+final D = 0.4251
+  Realization 9/20
+final D = 0.5909
+  Realization 10/20
+final D = 0.5792
+  Realization 11/20
+final D = 0.5870
+  Realization 12/20
+final D = 0.3978
+  Realization 13/20
+final D = 0.5751
+  Realization 14/20
+final D = 0.5668
+  Realization 15/20
+final D = 0.5243
+  Realization 16/20
+final D = 0.5243
+  Realization 17/20
+final D = 0.5909
+  Realization 18/20
+final D = 0.5668
+  Realization 19/20
+final D = 0.4251
+  Realization 20/20
+final D = 0.5080
+  → Mean final D = 0.5434 ± 0.0749
+  → % realizations with D < 0.35 = 0.0%
+  → Adjusted late decay slope ≈ 0.593
+
+Branching Depth Efficiency Summary (20 realizations)
+----------------------------------------------------------------------------------------------------
+Depth    Mean D ± std       % <0.35    % <0.30    % <0.25    Adj. slope
+----------------------------------------------------------------------------------------------------
+1        0.5084 ± 0.0615 0.0        0.0        0.0        0.613
+2        0.5310 ± 0.0545 0.0        0.0        0.0        0.599
+3        0.5243 ± 0.0750 5.0        5.0        0.0        0.603
+4        0.5391 ± 0.0478 0.0        0.0        0.0        0.598
+5        0.5434 ± 0.0749 0.0        0.0        0.0        0.593
+----------------------------------------------------------------------------------------------------
+Overall % D < 0.35 for depth ≥ 3: 1.7%
+WEAK EVIDENCE: Hypothesis not strongly supported
+OPPOSING SUB-HYPOTHESIS WINS: Higher branching does not lower dimension significantly
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+======================================================================
+ SECTOR 22 — Save Full Terminal Log
+======================================================================
+
+
+log2 
+
+
+
+========================================================================
+        K A K E Y A   N I R V A N A   C O N J E C T U R E   F R A M E W O R K
+                         Python Suite — Version 0001
+========================================================================
+  A Computational Observatory for Exotic Kakeya Geometries
+  Straight Tubes | Polygonal Tubes | Curved Tubes | Branching Tubes
+  RN Weights | BTLIAD Evolution | SBHFF Stability | RHF Diagnostics
+========================================================================
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+======================================================================
+ SECTOR 21 — Directional Coverage Balancer (v1.1 - Final)
+======================================================================
+
+--------------------------------------------------------------------------------
+HYPOTHESIS UNDER TEST (Directional Coverage):
+Optimizing for even directional distribution on the sphere (max min angular separation)
+produces lower mean D than random placement,
+suggesting direction uniformity is key to efficient Kakeya-like packings.
+
+OPPOSING SUB-HYPOTHESIS:
+If directional balancing does not reduce D significantly,
+then direction uniformity is not the dominant factor in finite approximations.
+--------------------------------------------------------------------------------
+  Realization 1/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+balanced D = 0.5433, random D = 0.6254, ΔD = 0.0821
+  Realization 2/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+balanced D = 0.6574, random D = 0.6340, ΔD = -0.0234
+  Realization 3/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+balanced D = 0.6519, random D = 0.6399, ΔD = -0.0120
+  Realization 4/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+balanced D = 0.6681, random D = 0.7090, ΔD = 0.0410
+  Realization 5/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+balanced D = 0.6181, random D = 0.6964, ΔD = 0.0783
+  Realization 6/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+balanced D = 0.6430, random D = 0.6653, ΔD = 0.0222
+  Realization 7/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+balanced D = 0.5759, random D = 0.5373, ΔD = -0.0386
+  Realization 8/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+balanced D = 0.5953, random D = 0.5970, ΔD = 0.0018
+  Realization 9/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+balanced D = 0.6286, random D = 0.6507, ΔD = 0.0221
+  Realization 10/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+balanced D = 0.6257, random D = 0.6599, ΔD = 0.0342
+  Realization 11/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+balanced D = 0.7436, random D = 0.7282, ΔD = -0.0154
+  Realization 12/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+balanced D = 0.6097, random D = 0.6415, ΔD = 0.0318
+  Realization 13/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+balanced D = 0.7109, random D = 0.6415, ΔD = -0.0694
+  Realization 14/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+balanced D = 0.6517, random D = 0.5970, ΔD = -0.0547
+  Realization 15/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+balanced D = 0.5613, random D = 0.5623, ΔD = 0.0009
+  Realization 16/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+balanced D = 0.6269, random D = 0.6419, ΔD = 0.0151
+  Realization 17/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+balanced D = 0.6397, random D = 0.5828, ΔD = -0.0569
+  Realization 18/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+balanced D = 0.5694, random D = 0.5388, ΔD = -0.0306
+  Realization 19/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+balanced D = 0.7168, random D = 0.6755, ΔD = -0.0413
+  Realization 20/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+balanced D = 0.6409, random D = 0.6209, ΔD = -0.0200
+
+Directional Balancer vs Random Summary
+----------------------------------------------------------------------------------------------------
+Mean D (Balanced): 0.6339
+Mean D (Random):   0.6323
+ΔD (Random - Balanced): -0.0016
+Noise floor ≈ 0.0505
+% runs Balanced lower: 50.0%
+% D < 0.35 (Balanced): 0.0%
+% D < 0.35 (Random):   0.0%
+----------------------------------------------------------------------------------------------------
+ΔD within noise floor — difference statistically insignificant
+
+INTERPRETATION: If directional balancing lowers D, it suggests even sphere coverage is key to Kakeya efficiency.
+If not, directional distribution may be secondary to spatial structure in finite approximations.
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+======================================================================
+ SECTOR 20 — Adaptive Coverage Avoidance System - v2.1 Final
+======================================================================
+
+--------------------------------------------------------------------------------
+HYPOTHESIS UNDER TEST (Adaptive Avoidance):
+Adaptive tubes that minimize overlap with existing coverage produce
+lower D than random placement, suggesting self-organizing systems
+approximate efficient Kakeya packings.
+
+OPPOSING SUB-HYPOTHESIS:
+If adaptive D is not significantly lower than random placement,
+then overlap avoidance does not improve packing efficiency in finite approximations.
+--------------------------------------------------------------------------------
+  Realization 1/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+adaptive D = 0.8337, random D = 0.6610, ΔD = -0.1727
+  Realization 2/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+adaptive D = 0.7740, random D = 0.6915, ΔD = -0.0826
+  Realization 3/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+adaptive D = 0.7646, random D = 0.6468, ΔD = -0.1178
+  Realization 4/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+adaptive D = 0.7817, random D = 0.6738, ΔD = -0.1079
+  Realization 5/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+adaptive D = 0.7177, random D = 0.6040, ΔD = -0.1137
+  Realization 6/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+adaptive D = 0.7634, random D = 0.6323, ΔD = -0.1311
+  Realization 7/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+adaptive D = 0.7693, random D = 0.6265, ΔD = -0.1428
+  Realization 8/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+adaptive D = 0.6384, random D = 0.5901, ΔD = -0.0483
+  Realization 9/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+adaptive D = 0.6861, random D = 0.6475, ΔD = -0.0386
+  Realization 10/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+adaptive D = 0.7593, random D = 0.7002, ΔD = -0.0590
+  Realization 11/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+adaptive D = 0.7982, random D = 0.6985, ΔD = -0.0997
+  Realization 12/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+adaptive D = 0.7282, random D = 0.6776, ΔD = -0.0505
+  Realization 13/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+adaptive D = 0.7870, random D = 0.6982, ΔD = -0.0888
+  Realization 14/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+adaptive D = 0.7149, random D = 0.6175, ΔD = -0.0973
+  Realization 15/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+adaptive D = 0.7303, random D = 0.5988, ΔD = -0.1315
+  Realization 16/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+adaptive D = 0.7246, random D = 0.6549, ΔD = -0.0697
+  Realization 17/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+adaptive D = 0.7857, random D = 0.6221, ΔD = -0.1636
+  Realization 18/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+adaptive D = 0.7926, random D = 0.6858, ΔD = -0.1068
+  Realization 19/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+adaptive D = 0.7712, random D = 0.6271, ΔD = -0.1441
+  Realization 20/20
+    Step 1/10 ε=0.1000
+    Step 2/10 ε=0.0750
+    Step 3/10 ε=0.0563
+    Step 4/10 ε=0.0422
+    Step 5/10 ε=0.0316
+    Step 6/10 ε=0.0237
+    Step 7/10 ε=0.0178
+    Step 8/10 ε=0.0133
+    Step 9/10 ε=0.0100
+    Step 10/10 ε=0.0100
+adaptive D = 0.7701, random D = 0.6123, ΔD = -0.1578
+
+Adaptive vs Random Summary
+----------------------------------------------------------------------------------------------------
+Mean D (Adaptive): 0.7546
+Mean D (Random):   0.6483
+ΔD (Random - Adaptive): -0.1062
+Noise floor ≈ 0.0390
+% runs Adaptive lower: 0.0%
+% D < 0.35 (Adaptive): 0.0%
+% D < 0.35 (Random):   0.0%
+----------------------------------------------------------------------------------------------------
+WEAK EVIDENCE: No significant advantage from adaptive placement
+OPPOSING SUB-HYPOTHESIS WINS: Overlap avoidance does not improve packing
+
+INTERPRETATION: In this regime, greedy overlap-avoidance tends to increase D,
+suggesting that 'even coverage' is entropically expensive and not Kakeya-efficient.
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+======================================================================
+ SECTOR 19 — Hybrid Synergy Probe (RN + Curved + Branching) - v2.1 Crash-Fixed
+======================================================================
+
+=== Cycle 1 (N=50, grid=3000, realizations=20, ε_start=0.1) ===
+  Realization 1/20 started
+done
+  Realization 2/20 started
+done
+  Realization 3/20 started
+done
+  Realization 4/20 started
+done
+  Realization 5/20 started
+done
+  Realization 6/20 started
+done
+  Realization 7/20 started
+done
+  Realization 8/20 started
+done
+  Realization 9/20 started
+done
+  Realization 10/20 started
+done
+  Realization 11/20 started
+done
+  Realization 12/20 started
+done
+  Realization 13/20 started
+done
+  Realization 14/20 started
+done
+  Realization 15/20 started
+done
+  Realization 16/20 started
+done
+  Realization 17/20 started
+done
+  Realization 18/20 started
+done
+  Realization 19/20 started
+done
+  Realization 20/20 started
+done
+
+Hybrid Synergy Summary
+------------------------------------------------------------------------------------------
+Family       Mean D     Std D      % D < 0.35
+------------------------------------------------------------------------------------------
+straight     0.0288     0.0696     100.0
+curved       0.1538     0.1280     100.0
+branching    0.1615     0.1490     90.0
+hybrid       0.5426     0.0652     0.0
+------------------------------------------------------------------------------------------
+WEAK EVIDENCE: No clear synergy
+OPPOSING SUB-HYPOTHESIS WINS: Hybrid does not outperform individual mechanisms
+
+Select a Sector to Run:
+  [1]  KNCF Master Equation Set
+  [2]  Straight Tube Simulation (Baseline)
+  [3]  RN Weighting Demo
+  [4]  BTLIAD Evolution Demo
+  [5]  SBHFF Stability Demo
+  [6]  Polygonal Tube Simulation
+  [7]  Curved Tube Simulation
+  [8]  Branching Tube Simulation
+  [9]  Entropy & Dimension Scan
+  [10] Full KNCF State Evolution
+  [11] Full KNCF State BTLIAD Evolution
+  [12] Full Full KNCF Full State Full BTLIAD Full Evolution
+  [13] RN-Biased Multi-Family Run
+  [14] Curvature & Branching Parameter Sweep
+  [15] Echo-Residue Multi-Family Stability Crown
+  [16] @@@ High-Curvature Collapse Probe
+  [17] RN Bias Reduction Sweep
+  [18] Branching Depth Hammer Test
+  [19] Hybrid Synergy Probe (RN + Curved + Branching)
+  [20] Adaptive Coverage Avoidance System
+  [21] Sector 21 - Directional Coverage Balancer
+  [22] Save Full Terminal Log - manual saves required
+  [0]  Exit
+------------------------------------------------------------
+
+======================================================================
+ SECTOR 22 — Save Full Terminal Log
+======================================================================
+
+
 </textarea>
 <!-- op13311 end of text locker op1337-->
 <script>
